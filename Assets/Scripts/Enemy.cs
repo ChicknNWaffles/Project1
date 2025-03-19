@@ -21,11 +21,32 @@ public class Enemy : MonoBehaviour
     private Vector3 direction;
     private float pathTimer;
 
+    // for moving enemies
+    private Vector3[] path;
+    private int at;
+
     // Start is called before the first frame update
     void Start(){
         var curTurnLikelihood = turnLikelihood;
         var direction = Vector3.left;
         var pathTimer = 0.5f;
+        var target = transform.position;
+        var at = 0;
+        if (type == Type.MovingFighter){
+
+            // generate 5 coordinates
+            for (var i = 0; i < 5; i++){
+                // generate x
+                var x = Random.Range(-5.5f, 8.0f);
+                // generate y
+                var y = Random.Range(-4.5f, 4.0f);
+
+                // add coords to path
+                var newCoord = new Vector3(x, y, 0);
+                path[i] = newCoord;
+            }
+            
+        }
     }
 
     // Update is called once per frame
@@ -42,7 +63,14 @@ public class Enemy : MonoBehaviour
     // handles enemy pathfinding differently depending on enemy type
     void pathfind(){
         if(type == Type.MovingFighter){
-
+            if (target == transform.position) {
+                target = path[at];
+                if (at == 5) {
+                    at = 0;
+                } else {
+                    at++;
+                }
+            }
         }else if(type == Type.FormationFighterMoving || type == Type.Station || type == Type.Asteroid){
             target = transform.position + (Vector3.left * moveSpeed);
         }else if (type == Type.BackFighter){
@@ -65,7 +93,9 @@ public class Enemy : MonoBehaviour
                 }
             }
             target = transform.position + (direction * moveSpeed);
-        } 
+        } else{
+            target = transform.position;
+        }
     }
 
     // Detects when the enemy collides with another object
