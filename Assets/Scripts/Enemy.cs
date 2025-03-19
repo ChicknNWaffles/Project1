@@ -27,11 +27,12 @@ public class Enemy : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
-        var curTurnLikelihood = turnLikelihood;
-        var direction = Vector3.left;
-        var pathTimer = 0.5f;
-        var target = transform.position;
-        var at = 0;
+        curTurnLikelihood = turnLikelihood;
+        direction = Vector3.left;
+        pathTimer = 0.5f;
+        target = transform.position;
+        at = 0;
+        path = new Vector3[6];
         if (type == Type.MovingFighter){
 
             // generate 5 coordinates
@@ -42,9 +43,13 @@ public class Enemy : MonoBehaviour
                 var y = Random.Range(-4.5f, 4.0f);
 
                 // add coords to path
-                var newCoord = new Vector3(x, y, 0);
+                var newCoord = new Vector3(x, y, 0.0f);
                 path[i] = newCoord;
             }
+
+            // put the start position as the last coord
+            // to complete the loop
+            path[5] = transform.position;
             
         }
     }
