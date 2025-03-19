@@ -6,12 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class InGameMenu : MonoBehaviour {
 
-    public GameObject game;
-
     public void ReturnMainMenu()
     {
 
-        game.GetComponent<Game>().togglePause();
+        Game.Instance.togglePause();
         SceneManager.LoadScene(0);
 
     }
@@ -19,7 +17,7 @@ public class InGameMenu : MonoBehaviour {
     public void Unpause()
     {
 
-        game.GetComponent<Game>().togglePause();
+        Game.Instance.togglePause();
 
     }
 }

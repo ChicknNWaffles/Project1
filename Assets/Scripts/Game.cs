@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Game : MonoBehaviour{
+public class Game : MonoBehaviour {
     public static ShooterControls Input { get; private set; }
+    public static Game Instance { get; private set; }
     public GameObject gameOverScreen;
     public GameObject pauseMenu;
     public SpriteRenderer player;
     public Camera camera;
 
     // Start is called before the first frame update
-    void Start(){
+    void Start() {
 
+        Instance = this;
         Input = new ShooterControls();
         Input.Enable();
         SceneManager.activeSceneChanged += disableInput;
