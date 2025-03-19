@@ -19,16 +19,22 @@ public class Enemy : MonoBehaviour
     public float turnLikelihood;
     private float curTurnLikelihood;
     private Vector3 direction;
+    private float pathTimer;
 
     // Start is called before the first frame update
     void Start(){
         var curTurnLikelihood = turnLikelihood;
         var direction = Vector3.left;
-        InvokeRepeating("pathfind", 0f, 0.5f);
+        var pathTimer = 0.5f;
     }
 
     // Update is called once per frame
     void Update(){
+        pathTimer -= Time.deltaTime;
+        if (pathTimer < 0) {
+            pathfind();
+            pathTimer = 0.5f;
+        }
         // Moves enemy towards target chosen by pathfinder
         transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
     }
