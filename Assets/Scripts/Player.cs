@@ -7,6 +7,25 @@ public class Player : MonoBehaviour
     public float moveSpeed;
     private float canGoUp = 1.0f;
     private float canGoDown = 1.0f;
+    
+    // Weapon properties
+    public GameObject bulletPrefab;
+    public GameObject chargeBulletPrefab;
+    public Transform firePoint;
+    public float bulletSpeed = 10f;
+    public float fireRate = 0.2f;
+    private float nextFireTime = 0f;
+    
+    // Charge shot properties
+    private bool isCharging = false;
+    private float chargeStartTime;
+    public float maxChargeTime = 2.0f;
+    public float minDamageMultiplier = 1.0f;
+    public float maxDamageMultiplier = 3.0f;
+    
+    // Weapon selection
+    private enum WeaponType { MainGun, ChargeGun }
+    private WeaponType currentWeapon = WeaponType.MainGun;
 
     // Dodge implementation
     public float dodgeDuration = 0.5f;
