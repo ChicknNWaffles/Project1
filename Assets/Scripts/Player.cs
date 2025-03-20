@@ -55,10 +55,19 @@ public class Player : MonoBehaviour
         var input = Game.Input.Standard;
         transform.Translate(Vector3.up * moveSpeed * Time.deltaTime * input.MoveUp.ReadValue<float>() * canGoUp);
         transform.Translate(Vector3.down * moveSpeed * Time.deltaTime * input.MoveDown.ReadValue<float>() * canGoDown);
+
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            currentWeapon = WeaponType.MainGun;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            currentWeapon = WeaponType.ChargeGun;
+        }
+
+
         
         // handles dodge ofc
         HandleDodge();
-
+        HandleShooting();
     }
     
     void HandleShooting()
@@ -192,6 +201,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(dodgeCooldown);
         canDodge = true;
     }
+
     // Damage and healing implementation, will be referenced whenever hit or healed
     public void TakeDamage(int damage) {
         healthSystem.LoseHealth(damage);

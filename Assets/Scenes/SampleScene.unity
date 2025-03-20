@@ -1444,6 +1444,8 @@ MonoBehaviour:
   maxChargeTime: 2
   minDamageMultiplier: 1
   maxDamageMultiplier: 3
+  dodgeDuration: 0.5
+  dodgeCooldown: 3
 --- !u!1 &1266409284
 GameObject:
   m_ObjectHideFlags: 0
@@ -2357,7 +2359,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 402728970043100204, guid: 49c2fa15f4f74034c9782fa42e770c70, type: 3}
       propertyPath: m_Name
-      value: mainBullet
+      value: MainBullet
       objectReference: {fileID: 0}
     - target: {fileID: 3185973592407932216, guid: 49c2fa15f4f74034c9782fa42e770c70, type: 3}
       propertyPath: m_LocalPosition.x
