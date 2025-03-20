@@ -213,19 +213,20 @@ public class Player : MonoBehaviour
 
     // detects if the player is going offscreen
     // and stops them
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.transform.parent.gameObject.name.Equals("OffscreenHitbox"))
-        {
-            if (collision.name.Equals("Top"))
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.name.Equals("Top") || collision.name.Equals("Bottom")){
+            if (collision.transform.parent.gameObject.name.Equals("OffscreenHitbox"))
             {
-                print("going offscreen");
-                canGoUp = 0.0f;
-            }
-            else
-            {
-                print("going offscreen");
-                canGoDown = 0.0f;
+                if (collision.name.Equals("Top"))
+                {
+                    print("going offscreen");
+                    canGoUp = 0.0f;
+                }
+                else
+                {
+                    print("going offscreen");
+                    canGoDown = 0.0f;
+                }
             }
         }
     }
@@ -233,12 +234,13 @@ public class Player : MonoBehaviour
     // detects when player is no longer
     // about to go offscreen and re-enables
     // movement in that direction
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.transform.parent.gameObject.name.Equals("OffscreenHitbox"))
-        {
-            canGoUp = 1.0f;
-            canGoDown = 1.0f;
+    void OnTriggerExit2D(Collider2D collision){
+        if (collision.name.Equals("Top") || collision.name.Equals("Bottom")){
+            if (collision.transform.parent.gameObject.name.Equals("OffscreenHitbox"))
+            {
+                canGoUp = 1.0f;
+                canGoDown = 1.0f;
+            }
         }
     }
 }
