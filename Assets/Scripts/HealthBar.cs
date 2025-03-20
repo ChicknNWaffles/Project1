@@ -10,5 +10,6 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateHealth(float healthAmount) {
         healthFill.fillAmount = healthAmount;
+        healthFill.color = Color.Lerp(Color.red, Color.green, healthAmount);
     }
 }

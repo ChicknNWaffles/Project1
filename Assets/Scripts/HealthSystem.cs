@@ -37,9 +37,9 @@ public class HealthSystem : MonoBehaviour
         UpdateHealthbar();
     }
 
-    // Fills the healthbar with whatever amount the hp is set to
+    // Fills the healthbar with whatever amount the hp is set to, changes color to red as it gets lower
     void UpdateHealthbar() {
-        healthBar.UpdateHealth((float)currentHealth / maxHealth);
+        healthBar.UpdateHealth((float)currentHealth / maxHealth);  
     }
 
     void Death() {
