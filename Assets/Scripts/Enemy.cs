@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     // Public fields
     public int health = 3;
 
-    public enum Type{
+    public enum Type {
         MovingFighter,
         FormationFighterMoving,
         FormationFighterStationary,
@@ -35,29 +35,29 @@ public class Enemy : MonoBehaviour
     public int enemyMaxHealth = 3;
 
     // Start is called before the first frame update
-    void Start(){
+    void Start() {
         curTurnLikelihood = turnLikelihood;
         direction = Vector3.left;
         pathTimer = 0.5f;
         target = transform.position;
         at = 0;
         path = new Vector3[6];
-        
+
         // health handling
         healthSystem = GetComponent<HealthSystem>();
         if (healthSystem != null) {
             healthSystem.SetHealth(enemyMaxHealth);
         }
-        else  {
+        else {
             Debug.LogError("HealthSytem not set for this enemy");
         }
-        
 
 
-        if (type == Type.MovingFighter){
+
+        if (type == Type.MovingFighter) {
 
             // generate 5 coordinates
-            for (var i = 0; i < 5; i++){
+            for (var i = 0; i < 5; i++) {
                 // generate x
                 var x = Random.Range(-5.5f, 8.0f);
                 // generate y
@@ -71,12 +71,12 @@ public class Enemy : MonoBehaviour
             // put the start position as the last coord
             // to complete the loop
             path[5] = transform.position;
-            
+
         }
     }
 
     // Update is called once per frame
-    void Update(){
+    void Update() {
         pathTimer -= Time.deltaTime;
         if (pathTimer < 0) {
             pathfind();
@@ -87,8 +87,8 @@ public class Enemy : MonoBehaviour
     }
 
     // handles enemy pathfinding differently depending on enemy type
-    void pathfind(){
-        if(type == Type.MovingFighter){
+    void pathfind() {
+        if (type == Type.MovingFighter) {
             if (target == transform.position) {
                 target = path[at];
                 if (at == 5) {
@@ -97,9 +97,9 @@ public class Enemy : MonoBehaviour
                     at++;
                 }
             }
-        }else if(type == Type.FormationFighterMoving || type == Type.Station || type == Type.Asteroid){
+        } else if (type == Type.FormationFighterMoving || type == Type.Station || type == Type.Asteroid) {
             target = transform.position + (Vector3.left * moveSpeed);
-        }else if (type == Type.BackFighter){
+        } else if (type == Type.BackFighter) {
             // if this is the first time setting the target, pick
             // a random direction. Else, decide whether or not
             // to turn around.
@@ -109,9 +109,9 @@ public class Enemy : MonoBehaviour
                 } else {
                     direction = Vector3.down;
                 }
-            }else { 
-                if(Random.value <= curTurnLikelihood) {
-                    if(direction == Vector3.up) {
+            } else {
+                if (Random.value <= curTurnLikelihood) {
+                    if (direction == Vector3.up) {
                         direction = Vector3.down;
                     } else {
                         direction = Vector3.up;
@@ -119,22 +119,24 @@ public class Enemy : MonoBehaviour
                 }
             }
             target = transform.position + (direction * moveSpeed);
-        } else{
+        } else {
             target = transform.position;
         }
     }
 
     // Detects when the enemy collides with another object
     // or collider
-    void OnTriggerEnter2D(Collider2D collision){
-        if (collision.transform.parent.gameObject.name.Equals("OffscreenHitbox")){
-            curTurnLikelihood = 1.0f;
-        } else if (collision.transform.parent.gameObject.name.Equals("TurnSoon-High")){
-            curTurnLikelihood = turnLikelihood + 7 * ((1.0f - turnLikelihood)/12);
-        } else if (collision.transform.parent.gameObject.name.Equals("TurnSoon-Low")){
-            curTurnLikelihood = turnLikelihood + 3 * ((1.0f - turnLikelihood)/12);
-        } else if (collision.transform.parent.gameObject.name.Equals("NormalTurn")){
-            curTurnLikelihood = turnLikelihood;
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.name.Equals("Top") || collision.name.Equals("Bottom")) {
+            if (collision.transform.parent.gameObject.name.Equals("OffscreenHitbox")) {
+                curTurnLikelihood = 1.0f;
+            } else if (collision.transform.parent.gameObject.name.Equals("TurnSoon-High")) {
+                curTurnLikelihood = turnLikelihood + 7 * ((1.0f - turnLikelihood) / 12);
+            } else if (collision.transform.parent.gameObject.name.Equals("TurnSoon-Low")) {
+                curTurnLikelihood = turnLikelihood + 3 * ((1.0f - turnLikelihood) / 12);
+            } else if (collision.transform.parent.gameObject.name.Equals("NormalTurn")) {
+                curTurnLikelihood = turnLikelihood;
+            }
         }
     }
 
