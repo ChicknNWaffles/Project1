@@ -10,11 +10,16 @@ public class HealthSystem : MonoBehaviour
     private int currentHealth;
     public HealthBar healthBar; // optional, calls of update healthbar will only be called if a healthbar is assigned (player)
     bool isInvincible = false;
+
+    // for changing color
+    private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
         // Sets the current hp to max upon startup
         currentHealth = maxHealth;
+        spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateHealthbar();
     }
 
