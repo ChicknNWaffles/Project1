@@ -8,7 +8,7 @@ public class HealthSystem : MonoBehaviour
     // Declares and sets the max hp to 100 and initializes the current health and health bar variables
     public int maxHealth = 100;
     private int currentHealth;
-    public HealthBar healthBar;
+    public HealthBar healthBar; // optional, calls of update healthbar will only be called if a healthbar is assigned (player)
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,12 @@ public class HealthSystem : MonoBehaviour
         // Sets the current hp to max upon startup
         currentHealth = maxHealth;
         UpdateHealthbar();
+    }
+
+    // For setting custom hp values for enemies
+    public void SetHealth(int maxHP) {
+        maxHealth = maxHP;
+        currentHealth = maxHealth;
     }
 
     // Function for when damage is taken, subtracts damage from current health
@@ -27,6 +33,8 @@ public class HealthSystem : MonoBehaviour
             currentHealth = 0;
             Death();
         }
+
+        UpdateHealthbar();
     }
 
     // Function for when damage is healed, used by powerups
@@ -37,9 +45,9 @@ public class HealthSystem : MonoBehaviour
         UpdateHealthbar();
     }
 
-    // Fills the healthbar with whatever amount the hp is set to
+    // Fills the healthbar with whatever amount the hp is set to, changes color to red as it gets lower
     void UpdateHealthbar() {
-        healthBar.UpdateHealth((float)currentHealth / maxHealth);
+        healthBar.UpdateHealth((float)currentHealth / maxHealth);  
     }
 
     void Death() {

@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     private WeaponType currentWeapon = WeaponType.MainGun;
     
     // Start is called before the first frame update
+    private HealthSystem healthSystem;
     void Start()
     {
         // Initialize firePoint if not assigned in inspector
@@ -35,12 +36,12 @@ public class Player : MonoBehaviour
         {
             firePoint = transform;
         }
+        healthSystem = GetComponent<HealthSystem>();
     }
     
     // Update is called once per frame
     void Update()
     {
-        // Movement
         var input = Game.Input.Standard;
         transform.Translate(Vector3.up * moveSpeed * Time.deltaTime * input.MoveUp.ReadValue<float>() * canGoUp);
         transform.Translate(Vector3.down * moveSpeed * Time.deltaTime * input.MoveDown.ReadValue<float>() * canGoDown);
@@ -158,6 +159,16 @@ public class Player : MonoBehaviour
         bullet.transform.localScale *= scaleMultiplier;
     }
     
+
+    // Damage and healing implementation, will be referenced whenever hit or healed
+    public void TakeDamage(int damage) {
+        healthSystem.LoseHealth(damage);
+    }
+
+    public void HealPlayer(int amount) {
+        healthSystem.Heal(amount);
+    }
+
     // detects if the player is going offscreen
     // and stops them
     void OnTriggerEnter2D(Collider2D collision)

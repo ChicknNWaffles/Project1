@@ -30,6 +30,10 @@ public class Enemy : MonoBehaviour
     private Vector3[] path;
     private int at;
 
+    // Refernce health system and set default enemy hp, CAN BE CHANGED FOR EACH ENEMY!
+    private HealthSystem healthSystem;
+    public int enemyMaxHealth = 50;
+
     // Start is called before the first frame update
     void Start(){
         curTurnLikelihood = turnLikelihood;
@@ -38,6 +42,18 @@ public class Enemy : MonoBehaviour
         target = transform.position;
         at = 0;
         path = new Vector3[6];
+        
+        // health handling
+        healthSystem = GetComponent<HealthSystem>();
+        if (healthSystem != null) {
+            healthSystem.SetHealth(enemyMaxHealth);
+        }
+        else  {
+            Debug.LogError("HealthSytem not set for this enemy");
+        }
+        
+
+
         if (type == Type.MovingFighter){
 
             // generate 5 coordinates
