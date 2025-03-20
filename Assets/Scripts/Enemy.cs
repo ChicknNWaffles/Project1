@@ -5,8 +5,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     // Public fields
-    public int health = 3;
-
     public enum Type {
         MovingFighter,
         FormationFighterMoving,
@@ -33,6 +31,8 @@ public class Enemy : MonoBehaviour
     // Refernce health system and set default enemy hp, CAN BE CHANGED FOR EACH ENEMY!
     private HealthSystem healthSystem;
     public int enemyMaxHealth = 3;
+    private SpriteRenderer spriteRenderer;
+
 
     // Start is called before the first frame update
     void Start() {
@@ -44,6 +44,10 @@ public class Enemy : MonoBehaviour
         path = new Vector3[6];
 
         // health handling
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer == null) {
+        Debug.LogWarning(gameObject.name + " has no SpriteRenderer");
+        }
         healthSystem = GetComponent<HealthSystem>();
         if (healthSystem != null) {
             healthSystem.SetHealth(enemyMaxHealth);
@@ -52,6 +56,7 @@ public class Enemy : MonoBehaviour
             Debug.LogError("HealthSytem not set for this enemy");
         }
 
+        healthSystem.SetHealth(enemyMaxHealth);
 
 
         if (type == Type.MovingFighter) {
@@ -140,20 +145,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        Debug.Log("Enemy took " + damage + " damage. Remaining health: " + health);
-        
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
-
-    void Die()
-    {
-        Debug.Log("Enemy destroyed");
-        Destroy(gameObject);
+    public void TakeDamage(int damage) {
+        healthSystem.LoseHealth(damage);
     }
 }

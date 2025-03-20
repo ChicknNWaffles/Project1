@@ -50,6 +50,7 @@ public class HealthSystem : MonoBehaviour
     
     // co routine to make entity flash red when taking damage
     IEnumerator FlashRed() {
+        if (spriteRenderer == null) yield break;
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         spriteRenderer.color = Color.white; 
@@ -65,6 +66,9 @@ public class HealthSystem : MonoBehaviour
 
     // Fills the healthbar with whatever amount the hp is set to, changes color to red as it gets lower
     void UpdateHealthbar() {
+        if (healthBar == null) {
+            return;
+        }
         healthBar.UpdateHealth((float)currentHealth / maxHealth);  
     }
 
@@ -75,6 +79,7 @@ public class HealthSystem : MonoBehaviour
 
     void Death() {
         // placeholder for now, kinda just destroysd and murders the entity
+        Debug.Log("Enemy destroyed");
         Destroy(gameObject);
     }
 

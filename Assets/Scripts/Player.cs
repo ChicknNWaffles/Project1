@@ -35,8 +35,10 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Collider2D playerCollider;
 
-    // Start is called before the first frame update
+    // Health implementation
     private HealthSystem healthSystem;
+    // Start is called before the first frame update
+   
     void Start()
     {
         // Initialize firePoint if not assigned in inspector
@@ -45,8 +47,11 @@ public class Player : MonoBehaviour
             firePoint = transform;
         }
         healthSystem = GetComponent<HealthSystem>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         playerCollider = GetComponent<Collider2D>();
+        if (healthSystem == null) Debug.LogError("HealthSystem is missing on Player!");
+        if (spriteRenderer == null) Debug.LogError("SpriteRenderer is missing on Player!");
+        if (playerCollider == null) Debug.LogError("Collider2D is missing on Player!");
     }
     
     // Update is called once per frame
@@ -187,10 +192,10 @@ public class Player : MonoBehaviour
         float flickerTime = 0f;
         while (flickerTime < dodgeDuration) {
             // half transparent red
-            spriteRenderer.color = new Color(1f, 0f, 0f, 0.5f); 
+            spriteRenderer.color = new Color(1f, 1f, 1f, 0.3f); 
             yield return new WaitForSeconds(dodgeDuration / 10);
             // half transparent purple
-            spriteRenderer.color = new Color(1f, 0f, 1f, 1f); 
+            spriteRenderer.color = new Color(1f, 1f, 1f, 1f); 
             yield return new WaitForSeconds(dodgeDuration / 10);
 
             flickerTime += dodgeDuration / 10;
