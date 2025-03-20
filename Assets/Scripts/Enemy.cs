@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
 
     // Refernce health system and set default enemy hp, CAN BE CHANGED FOR EACH ENEMY!
     private HealthSystem healthSystem;
-    public int enemyMaxHealth = 50;
+    public int enemyMaxHealth = 3;
 
     // Start is called before the first frame update
     void Start(){

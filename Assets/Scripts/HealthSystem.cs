@@ -9,7 +9,7 @@ public class HealthSystem : MonoBehaviour
     public int maxHealth = 100;
     private int currentHealth;
     public HealthBar healthBar; // optional, calls of update healthbar will only be called if a healthbar is assigned (player)
-
+    bool isInvincible = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,15 +26,28 @@ public class HealthSystem : MonoBehaviour
 
     // Function for when damage is taken, subtracts damage from current health
     public void LoseHealth(int damage) {
+        // doesnt lose health if invincible
+        if (isInvincible) {
+            return;
+        }
         currentHealth -= damage;
-        
+        UpdateHealthbar();
+
+        StartCoroutine(FlashRed());
         // Detects if entity is dead, resets hp to 0 in case of overflowing damage and triggers death function
         if (currentHealth <= 0) {
             currentHealth = 0;
             Death();
         }
 
-        UpdateHealthbar();
+
+    }
+    
+    // co routine to make entity flash red when taking damage
+    IEnumerator FlashRed() {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = Color.white; 
     }
 
     // Function for when damage is healed, used by powerups
@@ -48,6 +61,11 @@ public class HealthSystem : MonoBehaviour
     // Fills the healthbar with whatever amount the hp is set to, changes color to red as it gets lower
     void UpdateHealthbar() {
         healthBar.UpdateHealth((float)currentHealth / maxHealth);  
+    }
+
+    // For the dodge function
+    public void SetInvincible(bool value) {
+        isInvincible = value;
     }
 
     void Death() {
