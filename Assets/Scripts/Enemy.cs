@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    // Public fields
+    public int health = 3;
+
     public enum Type{
         MovingFighter,
         FormationFighterMoving,
@@ -15,8 +18,10 @@ public class Enemy : MonoBehaviour
     }
     public Type type;
     public float moveSpeed;
-    private Vector3 target;
     public float turnLikelihood;
+
+    // Private fields
+    private Vector3 target;
     private float curTurnLikelihood;
     private Vector3 direction;
     private float pathTimer;
@@ -124,12 +129,29 @@ public class Enemy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision){
         if (collision.transform.parent.gameObject.name.Equals("OffscreenHitbox")){
             curTurnLikelihood = 1.0f;
-        }else if (collision.transform.parent.gameObject.name.Equals("TurnSoon-High")){
+        } else if (collision.transform.parent.gameObject.name.Equals("TurnSoon-High")){
             curTurnLikelihood = turnLikelihood + 7 * ((1.0f - turnLikelihood)/12);
-        }else if (collision.transform.parent.gameObject.name.Equals("TurnSoon-Low")){
+        } else if (collision.transform.parent.gameObject.name.Equals("TurnSoon-Low")){
             curTurnLikelihood = turnLikelihood + 3 * ((1.0f - turnLikelihood)/12);
-        }else if (collision.transform.parent.gameObject.name.Equals("NormalTurn")){
+        } else if (collision.transform.parent.gameObject.name.Equals("NormalTurn")){
             curTurnLikelihood = turnLikelihood;
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        Debug.Log("Enemy took " + damage + " damage. Remaining health: " + health);
+        
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("Enemy destroyed");
+        Destroy(gameObject);
     }
 }

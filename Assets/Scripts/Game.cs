@@ -9,6 +9,7 @@ public class Game : MonoBehaviour {
     public GameObject gameOverScreen;
     public GameObject pauseMenu;
     public SpriteRenderer player;
+    public SpriteRenderer mainBullet;
     public Camera camera;
 
     // Start is called before the first frame update
