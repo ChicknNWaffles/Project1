@@ -6,18 +6,27 @@ public class Player : MonoBehaviour{
     public float moveSpeed;
     private float canGoUp = 1.0f;
     private float canGoDown = 1.0f;
-
+    private HealthSystem healthSystem;
     // Start is called before the first frame update
-    void Start(){
-
+    void Start() {
+        healthSystem = GetComponent<HealthSystem>();
     }
 
     // Update is called once per frame
-    void Update(){
+    void Update() {
         var input = Game.Input.Standard;
         transform.Translate(Vector3.up * moveSpeed * Time.deltaTime * input.MoveUp.ReadValue<float>() * canGoUp);
         transform.Translate(Vector3.down * moveSpeed * Time.deltaTime * input.MoveDown.ReadValue<float>() * canGoDown);
 
+    }
+
+    // Damage and healing implementation, will be referenced whenever hit or healed
+    public void TakeDamage(int damage) {
+        healthSystem.LoseHealth(damage);
+    }
+
+    public void HealPlayer(int amount) {
+        healthSystem.Heal(amount);
     }
 
     // detects if the player is going offscreen
