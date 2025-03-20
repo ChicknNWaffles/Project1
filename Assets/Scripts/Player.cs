@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public float moveSpeed;
     private float canGoUp = 1.0f;
     private float canGoDown = 1.0f;
-    private HealthSystem healthSystem;
 
     // Dodge implementation
     public float dodgeDuration = 0.5f;
