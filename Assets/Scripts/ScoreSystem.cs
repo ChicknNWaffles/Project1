@@ -5,16 +5,27 @@ using TMPro;
 
 public class ScoreSystem : MonoBehaviour
 {        
+    public static ScoreSystem Instance;
     public int maxScore = 999999999;
-    public int maxMult = 8;
+    public int maxMult = 32;
     private int currentScore;
     private int currentMult;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI MultText;
 
-    public int fontSizeMultiplier = 2;
+    public float fontSizeMultiplier = 1.5f;
     public Vector3 OriginalMultPosition;
     public float OriginalMultSize;
+
+    void Awake() {
+        if (Instance == null) {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+    }
+
 
     void Start() {
         currentScore = 0;
@@ -32,6 +43,11 @@ public class ScoreSystem : MonoBehaviour
         UpdateMultBar();
     }
 
+    // Resets the mult, when the player gets hit
+    public void MultReset() {
+        currentMult = 1;
+        UpdateMultBar();
+    }
     // Use this to increase the score in other scripts
     public void ScoreIncrease(int score) {
         int newScore = score * currentMult;
@@ -50,13 +66,13 @@ public class ScoreSystem : MonoBehaviour
     
     void UpdateMultBar() {
         MultText.text = "x" + currentMult.ToString();
-        MultText.fontSize = OriginalMultSize + (currentMult - 1) * fontSizeMultiplier;
+        MultText.fontSize = OriginalMultSize + ((float)currentMult - 1) * fontSizeMultiplier;
         StartCoroutine(ShakeMult());
     }
 
     private IEnumerator ShakeMult() {
-        float shakeAmount = 1f * (float)currentMult;
-        float shakeDuration = 0.15f;
+        float shakeAmount = 1.4f * (float)currentMult;
+        float shakeDuration = 0.2f;
 
         for (float t = 0; t < shakeDuration; t += Time.deltaTime) {
             MultText.transform.position = OriginalMultPosition + (Vector3)Random.insideUnitCircle * shakeAmount;

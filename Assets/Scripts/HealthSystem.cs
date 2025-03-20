@@ -28,6 +28,9 @@ public class HealthSystem : MonoBehaviour
         maxHealth = maxHP;
         currentHealth = maxHealth;
     }
+    public int GetHealth() {
+        return currentHealth;
+    }
 
     // Function for when damage is taken, subtracts damage from current health
     public void LoseHealth(int damage) {
@@ -39,10 +42,9 @@ public class HealthSystem : MonoBehaviour
         UpdateHealthbar();
 
         StartCoroutine(FlashRed());
-        // Detects if entity is dead, resets hp to 0 in case of overflowing damage and triggers death function
+        // Detects if entity is dead, resets hp to 0 in case of overflowing damage 
         if (currentHealth <= 0) {
             currentHealth = 0;
-            Death();
         }
 
 
@@ -76,11 +78,4 @@ public class HealthSystem : MonoBehaviour
     public void SetInvincible(bool value) {
         isInvincible = value;
     }
-
-    void Death() {
-        // placeholder for now, kinda just destroysd and murders the entity
-        Debug.Log("Enemy destroyed");
-        Destroy(gameObject);
-    }
-
 }
