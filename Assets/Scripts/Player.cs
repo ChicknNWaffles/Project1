@@ -170,6 +170,7 @@ public class Player : MonoBehaviour
     // dodge handling for left shift
     void HandleDodge() {
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDodge) {
+            Debug.Log("Dodge triggered");
             StartCoroutine(Dodge());
         }
     }
@@ -183,19 +184,23 @@ public class Player : MonoBehaviour
         healthSystem.SetInvincible(true);
 
         // Flicker the ship throughout the invincibility duration
-        for (int i = 0; i < 5; i++) {
-            // half transparent
-            spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f); 
+        float flickerTime = 0f;
+        while (flickerTime < dodgeDuration) {
+            // half transparent red
+            spriteRenderer.color = new Color(1f, 0f, 0f, 0.5f); 
             yield return new WaitForSeconds(dodgeDuration / 10);
-            // full color
-            spriteRenderer.color = new Color(1f, 1f, 1f, 1f); 
+            // half transparent purple
+            spriteRenderer.color = new Color(1f, 0f, 1f, 1f); 
             yield return new WaitForSeconds(dodgeDuration / 10);
+
+            flickerTime += dodgeDuration / 10;
         }
 
         // Re enable collision
         isDodging = false;
         playerCollider.enabled = true;
         healthSystem.SetInvincible(false);
+        spriteRenderer.color = Color.white;
 
         // Cooldown implementation
         yield return new WaitForSeconds(dodgeCooldown);
