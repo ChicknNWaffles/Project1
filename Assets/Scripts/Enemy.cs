@@ -33,6 +33,9 @@ public class Enemy : MonoBehaviour
     public int enemyMaxHealth = 3;
     private SpriteRenderer spriteRenderer;
 
+    // Enemy score value that can be changed per enemy
+    public int enemyScoreValue = 1;
+
 
     // Start is called before the first frame update
     void Start() {
@@ -48,6 +51,7 @@ public class Enemy : MonoBehaviour
         if (spriteRenderer == null) {
         Debug.LogWarning(gameObject.name + " has no SpriteRenderer");
         }
+
         healthSystem = GetComponent<HealthSystem>();
         if (healthSystem != null) {
             healthSystem.SetHealth(enemyMaxHealth);
@@ -144,8 +148,22 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-
+    
+    // Links with the health system to take damage
     public void TakeDamage(int damage) {
         healthSystem.LoseHealth(damage);
+        if (healthSystem.GetHealth() <= 0) {
+            Die();
+        }
+    }
+    
+    // kill and increase the score by the enemies score value
+    private void Die() {
+        if (ScoreSystem.Instance != null) {
+            ScoreSystem.Instance.ScoreIncrease(enemyScoreValue);
+            ScoreSystem.Instance.MultIncrease();
+        }
+        Debug.Log("Enemy destroyed");
+        Destroy(gameObject);
     }
 }

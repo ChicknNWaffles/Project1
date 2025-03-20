@@ -215,7 +215,18 @@ public class Player : MonoBehaviour
     // Damage and healing implementation, will be referenced whenever hit or healed
     public void TakeDamage(int damage) {
         healthSystem.LoseHealth(damage);
+        ScoreSystem.Instance.MultReset();
+        if (healthSystem.GetHealth() <= 0) {
+            Die();
+        }
     }
+
+    // KILLS PLAYER
+    private void Die() {
+        Debug.Log("Player destroyed");
+        Destroy(gameObject);
+    }
+
 
     public void HealPlayer(int amount) {
         healthSystem.Heal(amount);
