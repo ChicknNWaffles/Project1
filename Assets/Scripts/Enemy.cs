@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     public Type type;
     public float moveSpeed;
     public float turnLikelihood;
+    public float bulletSpeed = 10f;
     
 
     // Private fields
@@ -46,7 +47,7 @@ public class Enemy : MonoBehaviour
         curTurnLikelihood = turnLikelihood;
         direction = Vector3.left;
         pathTimer = 0.5f;
-        shootTimer = Random.Range(1f, 2.5f);
+        shootTimer = Random.Range(1.0f, 2.5f);
         inBurst = 0;
         target = transform.position;
         at = 0;
@@ -117,7 +118,7 @@ public class Enemy : MonoBehaviour
                         shootTimer = Random.Range(2.5f, 4.0f);
                         inBurst = 5;
                     }else {
-                        shootTimer = 0.3f;
+                        shootTimer = 0.2f;
                         inBurst -= 1;
                     }
                 } else {
@@ -210,7 +211,9 @@ public class Enemy : MonoBehaviour
         GameObject bullet = Instantiate(enemyBulletPrefab, firepoint.position, firepoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
-        rb.velocity = firepoint.position + direction;
+        rb.velocity = direction * bulletSpeed;
+        
+        
 
     }
 }
