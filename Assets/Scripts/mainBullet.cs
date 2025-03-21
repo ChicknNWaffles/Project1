@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public float rotationSpeed = 100f;
     public int damage = 1;
     public float lifetime = 3f;
     
@@ -11,6 +12,14 @@ public class Bullet : MonoBehaviour
     {
         // Destroy the bullet after lifetime seconds
         // Destroy(gameObject, lifetime);
+    }
+
+    void Update()
+    {
+        if (gameObject.CompareTag("chargeBullet")) {
+            // Rotate around the Z-axis for 2D rotation
+            transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+        }
     }
     
     void OnTriggerEnter2D(Collider2D collision)
