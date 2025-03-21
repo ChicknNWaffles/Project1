@@ -212,7 +212,15 @@ public class Enemy : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
         rb.velocity = direction * bulletSpeed;
-        
+
+        EnemyBullet bulletComponent = bullet.GetComponent<EnemyBullet>();
+        // assign damage base don enemy type
+        if (type == Type.BattleCruiser) {
+            bulletComponent.damage = 3;
+        }
+        else {
+            bulletComponent.damage = 1;
+        }
         
 
     }
