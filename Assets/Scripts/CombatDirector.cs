@@ -34,6 +34,7 @@ public class CombatDirector : MonoBehaviour
     // private variables
     private float spawnTimer = 3; // seconds it waits until the next "wave" is spawned
     private float x;    private float y;
+    private Vector3 spawnPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -48,18 +49,25 @@ public class CombatDirector : MonoBehaviour
         if(heatLevel > 3) { heatLevel = 3; }
         if (heatLevel < 0) { heatLevel = 0; }
 
+        spawnTimer -= Time.deltaTime;
         // wait for a timer to reach zero. When that timer is zero, spawn a valid enemy (or wave of enemies)
         // at a random coordinate
+        if (spawnTimer < 0)
+        {
+            // pick a random x coordinate between 12 and 15
+            spawnPoint.x = Random.Range(12f, 15f);
+            // pick a random y coordinate between -4 and 4
+            spawnPoint.y = Random.Range(-4f, 4f);
 
-        // pick a random x coordinate between 12 and 15
-        x = Random.Range(12f,15f);
-        // pick a random y coordinate between -4 and 4
-        y = Random.Range(-4f,4f);
+            // choose which valid enemy to spawn
+            GameObject c1 = Instantiate(asteroidPrefab);
+            c1.transform.position = spawnPoint;
 
-        // choose which valid enemy to spawn
+            // set a new stall timer depending on the "weight" of the enemies spawned, and the "heat" of the game
+            spawnTimer = 3 + heatLevel;
+        }
+        
 
-
-        // set a new stall timer depending on the "weight" of the enemies spawned, and the "heat" of the game
     }
 
     void SpawnCruiser(float x = 12, float y = 0)
@@ -71,7 +79,6 @@ public class CombatDirector : MonoBehaviour
             // this switch case does not use fallthrough, so each heat level can spawn a different wave of enemies
             case 3:
                 // on hard heat, spawn two cruisers and six fighters
-                GameObject c1 = Instantiate();
                 break;
             case 2:
                 // on medium heat, spawn one cruiser and four fighters
@@ -81,6 +88,7 @@ public class CombatDirector : MonoBehaviour
                 break;
             default:
                 // if heat is 0, spawn just the one cruiser
+                //GameObject cTemp = Instantiate(cruiserPrefab, transform.position, transform.rotate);
                 break;
         }
 
@@ -99,6 +107,7 @@ public class CombatDirector : MonoBehaviour
             // pick a random y coordinate between -4 and 4
 
             // spawn an asteroid at that coordinate
+            //GameObject a1 = Instantiate(asteroidPrefab, transform.position, transform.rotate);
         }
 
     }
@@ -121,6 +130,7 @@ public class CombatDirector : MonoBehaviour
                 break;
             default:
                 // if heat is 0, spawn just the one figthers
+                //GameObject f1 = Instantiate(fighterFormationHorizontalPrefab, transform.position, transform.rotate);
                 break;
         }
 
