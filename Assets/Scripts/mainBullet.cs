@@ -29,4 +29,12 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("DestroyBullet"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
