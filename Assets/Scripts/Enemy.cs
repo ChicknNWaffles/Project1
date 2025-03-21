@@ -105,7 +105,8 @@ public class Enemy : MonoBehaviour
             shootTimer -= Time.deltaTime;
             if (shootTimer < 0) { 
                 if(type == Type.Station){
-                    var playerPos = Game.player.gameObject.transform.parent.position;
+                    var playerPos = Game.Instance.playerObj.transform.position;
+                    //var playerPos = transform.position;
                     var curPos = transform.position;
                     var direction = playerPos - curPos;
                     Shoot(direction);
