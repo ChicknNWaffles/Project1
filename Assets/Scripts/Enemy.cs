@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     }
     public GameObject enemyBulletPrefab;
     public Type type;
-    public float moveSpeed;
+    public float moveSpeed = 3;
     public float turnLikelihood;
     public float bulletSpeed = 10f;
     
@@ -211,7 +211,7 @@ public class Enemy : MonoBehaviour
         GameObject bullet = Instantiate(enemyBulletPrefab, firepoint.position, firepoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
-        rb.velocity = direction * bulletSpeed;
+        rb.velocity = direction.normalized * bulletSpeed;
 
         EnemyBullet bulletComponent = bullet.GetComponent<EnemyBullet>();
         // assign damage base don enemy type
