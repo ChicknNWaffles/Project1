@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7952844889256276663}
   - component: {fileID: 5203447129657092214}
   m_Layer: 0
-  m_Name: placeholderForPlayerCode
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  bulletPrefab: {fileID: 0}
-  chargeBulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 402728970043100204, guid: 49c2fa15f4f74034c9782fa42e770c70, type: 3}
+  chargeBulletPrefab: {fileID: 6182333211121395224, guid: 8cf38c082a10c874ba717f31c5f0a22b, type: 3}
   firePoint: {fileID: 0}
   bulletSpeed: 10
   fireRate: 0.2
