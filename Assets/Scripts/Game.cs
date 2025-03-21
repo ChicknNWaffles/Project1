@@ -11,6 +11,7 @@ public class Game : MonoBehaviour {
     public SpriteRenderer player;
     public SpriteRenderer mainBullet;
     public Camera camera;
+    private bool gameOver = false;
 
     // Start is called before the first frame update
     void Start() {
@@ -29,7 +30,11 @@ public class Game : MonoBehaviour {
             OnPause();
         }
 
-        GameOver();
+        if (gameOver) {
+
+            GameOver();
+
+        }
 
     }
 
@@ -53,14 +58,14 @@ public class Game : MonoBehaviour {
 
     public void GameOver()
     {
+        
+        gameOverScreen.SetActive(true);
 
-        if (IsOffScreenVertically(player, camera))
-        {
+    }
 
-            gameOverScreen.SetActive(true);
-            disableInput();
+    public void setGameOver(bool gameOver) {
 
-        }
+        this.gameOver = gameOver;
 
     }
 

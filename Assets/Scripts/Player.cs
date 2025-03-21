@@ -225,6 +225,7 @@ public class Player : MonoBehaviour
     private void Die() {
         Debug.Log("Player destroyed");
         Destroy(gameObject);
+        Game.Instance.setGameOver(true);
     }
 
 
