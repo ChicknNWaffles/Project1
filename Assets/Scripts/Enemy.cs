@@ -14,15 +14,20 @@ public class Enemy : MonoBehaviour
         Station,
         Asteroid
     }
+    public GameObject enemyBulletPrefab;
     public Type type;
-    public float moveSpeed;
+    public float moveSpeed = 3;
     public float turnLikelihood;
+    public float bulletSpeed = 10f;
+    
 
     // Private fields
     private Vector3 target;
     private float curTurnLikelihood;
     private Vector3 direction;
     private float pathTimer;
+    private float shootTimer;
+    private int inBurst;
 
     // for moving enemies
     private Vector3[] path;
@@ -42,6 +47,8 @@ public class Enemy : MonoBehaviour
         curTurnLikelihood = turnLikelihood;
         direction = Vector3.left;
         pathTimer = 0.5f;
+        shootTimer = Random.Range(1.0f, 2.5f);
+        inBurst = 0;
         target = transform.position;
         at = 0;
         path = new Vector3[6];
@@ -93,6 +100,34 @@ public class Enemy : MonoBehaviour
         }
         // Moves enemy towards target chosen by pathfinder
         transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+
+        // shooting
+        if(type != Type.Asteroid){
+            shootTimer -= Time.deltaTime;
+            if (shootTimer < 0) { 
+                if(type == Type.Station){
+                    var playerPos = Game.Instance.playerObj.transform.position;
+                    //var playerPos = transform.position;
+                    var curPos = transform.position;
+                    var direction = playerPos - curPos;
+                    Shoot(direction);
+                    shootTimer = Random.Range(1.0f, 2.5f);
+                }else if (type == Type.BattleCruiser) {
+                    Shoot();
+                    if (inBurst == 0) {
+                        shootTimer = Random.Range(2.5f, 4.0f);
+                        inBurst = 5;
+                    }else {
+                        shootTimer = 0.2f;
+                        inBurst -= 1;
+                    }
+                } else {
+                    Shoot();
+                    shootTimer = Random.Range(1.0f, 2.5f);
+                }
+            }
+        }
+        
     }
 
     // handles enemy pathfinding differently depending on enemy type
@@ -165,5 +200,28 @@ public class Enemy : MonoBehaviour
         }
         Debug.Log("Enemy destroyed");
         Destroy(gameObject);
+    }
+
+    private void Shoot() {
+        Shoot(Vector3.left);
+    }
+
+    private void Shoot(Vector3 direction) {
+        var firepoint = transform;
+        GameObject bullet = Instantiate(enemyBulletPrefab, firepoint.position, firepoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+
+        rb.velocity = direction.normalized * bulletSpeed;
+
+        EnemyBullet bulletComponent = bullet.GetComponent<EnemyBullet>();
+        // assign damage base don enemy type
+        if (type == Type.BattleCruiser) {
+            bulletComponent.damage = 3;
+        }
+        else {
+            bulletComponent.damage = 1;
+        }
+        
+
     }
 }

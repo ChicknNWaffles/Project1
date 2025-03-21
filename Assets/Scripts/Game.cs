@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Game : MonoBehaviour {
     public static ShooterControls Input { get; private set; }
     public static Game Instance { get; private set; }
+    public GameObject playerObj;
     public GameObject gameOverScreen;
     public GameObject pauseMenu;
     public SpriteRenderer player;
