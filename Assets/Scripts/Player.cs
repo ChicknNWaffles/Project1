@@ -232,7 +232,6 @@ public class Player : MonoBehaviour
         Game.Instance.setGameOver(true);
     }
 
-
     public void HealPlayer(int amount) {
         healthSystem.Heal(amount);
     }
