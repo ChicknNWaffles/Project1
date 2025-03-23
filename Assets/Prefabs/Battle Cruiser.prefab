@@ -14,7 +14,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4877148505845150358, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
       propertyPath: m_Name
-      value: Battle Cruiser Variant
+      value: Battle Cruiser
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228782696520288269, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.3274999
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228782696520288269, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.3274999
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228782696520288269, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.3274999
       objectReference: {fileID: 0}
     - target: {fileID: 7228782696520288269, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55,6 +67,10 @@ PrefabInstance:
     - target: {fileID: 7228782696520288269, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228782696520288269, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

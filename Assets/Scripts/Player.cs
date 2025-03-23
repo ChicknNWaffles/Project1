@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public Transform firePoint;
     public float bulletSpeed = 10f;
     public float fireRate = 0.2f;
+    private float fireRateCooldown = 1.0f;
     private float nextFireTime = 0f;
     
     // Charge shot properties
@@ -100,7 +101,7 @@ public class Player : MonoBehaviour
     void HandleChargeGun()
     {
         // Start charging
-        if (Input.GetKeyDown(KeyCode.Space) && !isCharging)
+        if (Input.GetKeyDown(KeyCode.Space) && !isCharging && Time.time >= nextFireTime)
         {
             StartCharging();
         }
@@ -109,6 +110,9 @@ public class Player : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space) && isCharging)
         {
             ReleaseChargeShot();
+            
+            // Add cooldown after firing
+            nextFireTime = Time.time + fireRateCooldown;
         }
     }
     
@@ -227,7 +231,6 @@ public class Player : MonoBehaviour
         Destroy(gameObject);
         Game.Instance.setGameOver(true);
     }
-
 
     public void HealPlayer(int amount) {
         healthSystem.Heal(amount);

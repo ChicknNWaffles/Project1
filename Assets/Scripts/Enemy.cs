@@ -127,7 +127,6 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-        
     }
 
     // handles enemy pathfinding differently depending on enemy type
