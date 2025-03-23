@@ -24,10 +24,8 @@ public class Bullet : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // Check if the bullet hit an enemy
         if (collision.CompareTag("Enemy"))
         {
-            // Apply damage to the enemy
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {

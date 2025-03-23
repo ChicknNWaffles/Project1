@@ -2112,6 +2112,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 390184741}
   m_SourcePrefab: {fileID: 100100000, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
+--- !u!114 &1485791877 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9220542086863523329, guid: dc574118598c22d48ad4c172d98b03a9, type: 3}
+  m_PrefabInstance: {fileID: 818712938}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1612772907
 GameObject:
   m_ObjectHideFlags: 0
@@ -2610,6 +2621,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1699481396}
     m_Modifications:
+    - target: {fileID: 5269153963677954147, guid: b2ab67dd4c3408c4baa0257c75489156, type: 3}
+      propertyPath: MultText
+      value: 
+      objectReference: {fileID: 1485791877}
     - target: {fileID: 7640597238388692451, guid: b2ab67dd4c3408c4baa0257c75489156, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
