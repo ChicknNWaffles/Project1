@@ -35,18 +35,26 @@ public class CombatDirector : MonoBehaviour
     private float spawnTimer = 3; // seconds it waits until the next "wave" is spawned
     private float x;    private float y;
     private Vector3 spawnPoint;
+    private List<string> enabled = new List<string>(); // a list that will store the enabled enemy types
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        // for each enabled enemy type, add the type to the list, so it can be randomly selected from.
+        if (cruiser) { enabled.Add("cruiser"); }
+        if (fighterFormationStationary) { enabled.Add("ffStationary"); }
+        if (fighterFormationHorizontal) { enabled.Add("ffHorizontal"); }
+        if (fighterLoneBack) { enabled.Add("flBack"); }
+        if (fighterLoneMoving) { enabled.Add("flMoving"); }
+        if (station) { enabled.Add("station"); }
+        if (asteroid) { enabled.Add("asteroid"); }
     }
 
     // Update is called once per frame
     void Update()
     {
         // make sure the heat isn't above 3 or below 0
-        if(heatLevel > 3) { heatLevel = 3; }
+        if (heatLevel > 3) { heatLevel = 3; }
         if (heatLevel < 0) { heatLevel = 0; }
 
         spawnTimer -= Time.deltaTime;
@@ -60,8 +68,37 @@ public class CombatDirector : MonoBehaviour
             spawnPoint.y = Random.Range(-4f, 4f);
 
             // choose which valid enemy to spawn
-            GameObject c1 = Instantiate(asteroidPrefab);
-            c1.transform.position = spawnPoint;
+
+            int len = enabled.Count;
+            // spawn the enemy with the correct spawn function
+            switch (enabled[Random.Range(0,len)])
+            {
+                case "cruiser":
+                    SpawnCruiser();
+                    break;
+                case "ffStationary":
+                    // code block
+                    break;
+                case "ffHorizontal":
+                    SpawnFormationHorizontal();
+                    break;
+                case "flBack":
+                    // code block
+                    break;
+                case "flMoving":
+                    // code block
+                    break;
+                case "station":
+                    // code block
+                    break;
+                case "asteroid":
+                    SpawnAsteroid();
+                    break;
+                default:
+                    // don't spawn anything.
+                    break;
+            }
+
 
             // set a new stall timer depending on the "weight" of the enemies spawned, and the "heat" of the game
             spawnTimer = 3 + heatLevel;
@@ -70,9 +107,8 @@ public class CombatDirector : MonoBehaviour
 
     }
 
-    void SpawnCruiser(float x = 12, float y = 0)
+    void SpawnCruiser()
     {
-        
         // when a cruiser is spawned, it may spawn some stationary fighters next to it depending on the heat level.
         switch (heatLevel)
         { 
@@ -88,49 +124,54 @@ public class CombatDirector : MonoBehaviour
                 break;
             default:
                 // if heat is 0, spawn just the one cruiser
-                //GameObject cTemp = Instantiate(cruiserPrefab, transform.position, transform.rotate);
+                GameObject temp = Instantiate(cruiserPrefab);
+                temp.transform.position = spawnPoint;
                 break;
         }
 
     }
 
-
+    // asteroids and stations should have similar spawns
     void SpawnAsteroid()
     {
 
         // asteroids should spawn in random clusters that increase in size along with the heat.
-        // 7 asteroids are spawned at heat 3,
+        // 7 asteroids are spawned at heat 3, and two less are spawned as the heat goes down.
         for(int i = heatLevel*2; i>=0; i--)
         {
             // pick a random x coordinate between 12 and 15
-
-            // pick a random y coordinate between -4 and 4
+            spawnPoint.x = Random.Range(12f, 15f);
+            // pick a random y coordinate between -4.2 and 4.2
+            spawnPoint.y = Random.Range(-4.2f, 4.2f);
 
             // spawn an asteroid at that coordinate
-            //GameObject a1 = Instantiate(asteroidPrefab, transform.position, transform.rotate);
+            GameObject temp = Instantiate(asteroidPrefab);
+            temp.transform.position = spawnPoint;
         }
 
     }
 
-    void SpawnFormationHorizontal(float x = 12, float y = 0)
+    // most of the normal fighters (formation fighters (stationary and horizontal), lone fighters (back and moving) ) will spawn
+    // in generally the same way: a cluster formation of ships.
+    void SpawnFormationHorizontal()
     {
-
         // these fighters should move in groups, horizontally across the screen. As the heat increases, so too does the pack size.
         switch (heatLevel)
         {
             // this switch case does use fallthrough, so each heat level builds on the last one.
             case 3:
-                // on hard heat, spawn two more figthers offset even more
+                // on hard heat, spawn two more figthers offset even more (back and to the sides, making a zig-zag)
                 break;
             case 2:
-                // on medium heat, spawn two more figthers offset more
+                // on medium heat, spawn two more figthers offset more (on level with the single middle fighter, making a W)
                 break;
             case 1:
-                // on easy heat, spawn two more figthers offset a bit
+                // on easy heat, spawn two more figthers offset a bit (back and to the sides, making a V)
                 break;
             default:
-                // if heat is 0, spawn just the one figthers
-                //GameObject f1 = Instantiate(fighterFormationHorizontalPrefab, transform.position, transform.rotate);
+                // if heat is 0, spawn just the one figther
+                GameObject temp = Instantiate(fighterFormationHorizontalPrefab);
+                temp.transform.position = spawnPoint;
                 break;
         }
 
