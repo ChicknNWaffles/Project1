@@ -104,6 +104,15 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.cinemachine": {
+      "version": "2.10.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.test-framework": "1.1.31"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.collections": {
       "version": "1.2.4",
       "depth": 2,
@@ -116,7 +125,7 @@
     },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
-      "depth": 4,
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -170,7 +179,7 @@
     },
     "com.unity.test-framework": {
       "version": "1.1.33",
-      "depth": 3,
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.ext.nunit": "1.0.6",
