@@ -175,13 +175,13 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-    }
 
-    void OnBecameInvisible() { 
-        if (readyToStart) {
-            print("Enemy Despawned");
+        // Despawn if offscreen
+        if(transform.position.x < -9.5) {
+            print("Despawned enemy");
             Destroy(gameObject);
         }
+
     }
 
     // handles enemy pathfinding differently depending on enemy type
