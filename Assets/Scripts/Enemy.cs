@@ -184,6 +184,10 @@ public class Enemy : MonoBehaviour
 
     }
 
+    void originSetter(Vector3 newOrigin){
+        origin = newOrigin;
+    }
+
     // handles enemy pathfinding differently depending on enemy type
     void pathfind() {
         if (type == Type.MovingFighter) {
