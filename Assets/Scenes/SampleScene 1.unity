@@ -1656,6 +1656,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184d92230d3f66647a5c69ae404996e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shoot_sound: {fileID: 0}
+  charge_shoot_sound: {fileID: 0}
+  damage_sound: {fileID: 0}
+  death_sound: {fileID: 0}
+  game_over: {fileID: 0}
   moveSpeed: 5
   bulletPrefab: {fileID: 1656625110}
   chargeBulletPrefab: {fileID: 1904527843}
@@ -2188,7 +2193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cruiser: 1
   fighterFormationStationary: 1
-  fighterFormationHorizontal: 1
+  fighterFormationHorizontal: 0
   fighterLoneBack: 1
   fighterLoneMoving: 1
   station: 1
