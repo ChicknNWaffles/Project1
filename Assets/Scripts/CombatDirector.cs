@@ -64,6 +64,7 @@ public class CombatDirector : MonoBehaviour
         // at a random coordinate
         if (spawnTimer < 0)
         {
+
             // choose which valid enemy to spawn
 
             int len = enabled.Count;
@@ -98,7 +99,7 @@ public class CombatDirector : MonoBehaviour
 
 
             // set a new stall timer depending on the "weight" of the enemies spawned, and the "Heat" of the game
-            spawnTimer = 5 + (int)(heatLevel*1.5);
+            spawnTimer = 2 + (int)(heatLevel*1.5);
         }
         
 
@@ -109,7 +110,8 @@ public class CombatDirector : MonoBehaviour
         spawnOffset.x = x; spawnOffset.y = y;
         GameObject temp = Instantiate(prefab);
         temp.transform.position = spawnOffset;
-        // temp.origin.x = spawnOffset.x-4; temp.origin.y = spawnOffset.y;
+        spawnOffset.x = spawnOffset.x - 5.5f;
+        temp.GetComponent<Enemy>().origin = spawnOffset;
     }
 
     /* ========================================================================================================================

@@ -8,7 +8,7 @@ public class ScoreSystem : MonoBehaviour
     public static ScoreSystem Instance;
     public int maxScore = 999999999;
     public int maxMult = 32;
-    private int currentScore;
+    public int currentScore;
     private int currentMult;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI MultText;

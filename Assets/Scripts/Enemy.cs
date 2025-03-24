@@ -184,7 +184,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void originSetter(Vector3 newOrigin){
+    public void originSetter(Vector3 newOrigin){
         origin = newOrigin;
     }
 
