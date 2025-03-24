@@ -7,7 +7,9 @@ public class Player : MonoBehaviour
 
     //Audio Imports
     [SerializeField] private AudioClip shoot_sound;
+    [SerializeField] private AudioClip charge_shoot_sound;
     [SerializeField] private AudioClip damage_sound;
+    [SerializeField] private AudioClip death_sound;
     [SerializeField] private AudioClip game_over;
 
     //Movement
@@ -131,7 +133,7 @@ public class Player : MonoBehaviour
         
         if (rb != null)
         {
-            SoundFXManager.Instance.PlaySoundClip(shoot_sound, transform, 1f);
+            SoundFXManager.Instance.PlaySoundClip(shoot_sound, transform, 0.6f);
             rb.velocity = firePoint.right * bulletSpeed;
         }
         
@@ -161,6 +163,7 @@ public class Player : MonoBehaviour
         
         if (rb != null)
         {
+            SoundFXManager.Instance.PlaySoundClip(charge_shoot_sound, transform, 0.6f);
             rb.velocity = firePoint.right * bulletSpeed;
         }
         
@@ -238,6 +241,7 @@ public class Player : MonoBehaviour
     // KILLS PLAYER
     private void Die() {
         Debug.Log("Player destroyed");
+        SoundFXManager.Instance.PlaySoundClip(death_sound, transform, 1f);
         SoundFXManager.Instance.PlaySoundClip(game_over, transform, 1f);
         Destroy(gameObject);
         Game.Instance.GameOver();
