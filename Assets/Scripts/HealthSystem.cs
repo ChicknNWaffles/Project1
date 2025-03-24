@@ -19,7 +19,7 @@ public class HealthSystem : MonoBehaviour
     {
         // Sets the current hp to max upon startup
         currentHealth = maxHealth;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         UpdateHealthbar();
     }
 
@@ -40,6 +40,11 @@ public class HealthSystem : MonoBehaviour
         }
         currentHealth -= damage;
         UpdateHealthbar();
+
+        // shakes the health bar
+        if (healthBar != null) {
+            healthBar.ShakeHealth();
+        }
 
         StartCoroutine(FlashRed());
         // Detects if entity is dead, resets hp to 0 in case of overflowing damage 

@@ -13,7 +13,7 @@ public class ScoreSystem : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI MultText;
 
-    public float fontSizeMultiplier = 1.5f;
+    public float fontSizeMultiplier = 1.2f;
     public Vector3 OriginalMultPosition;
     public float OriginalMultSize;
 
@@ -66,7 +66,7 @@ public class ScoreSystem : MonoBehaviour
     
     void UpdateMultBar() {
         MultText.text = "x" + currentMult.ToString();
-        MultText.fontSize = OriginalMultSize + ((float)currentMult - 1) * fontSizeMultiplier;
+        MultText.fontSize = OriginalMultSize + ((float)currentMult - 1) + 2 * fontSizeMultiplier;
         StartCoroutine(ShakeMult());
     }
 

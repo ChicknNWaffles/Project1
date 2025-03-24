@@ -67,8 +67,43 @@ public class Enemy : MonoBehaviour
             Debug.LogError("HealthSytem not set for this enemy");
         }
 
-        healthSystem.SetHealth(enemyMaxHealth);
+        // setting the enemy scores based on type
+        switch (type) {
+            case Type.MovingFighter:
+                enemyMaxHealth = 3;
+                enemyScoreValue = 5;
+                break;
+            case Type.FormationFighterMoving:
+                enemyMaxHealth = 3;
+                enemyScoreValue = 10;
+                break;
+            case Type.FormationFighterStationary:
+                enemyMaxHealth = 3;
+                enemyScoreValue = 8;
+                break;
+            case Type.BackFighter:
+                enemyMaxHealth = 3;
+                enemyScoreValue = 12;
+                break;
+            case Type.BattleCruiser:
+                enemyMaxHealth = 8;
+                enemyScoreValue = 20;
+                break;
+            case Type.Station:
+                enemyMaxHealth = 12;
+                enemyScoreValue = 25;
+                break;
+            case Type.Asteroid:
+                enemyMaxHealth = 5;
+                enemyScoreValue = 3;
+                break;
+            default:
+                enemyMaxHealth = 3;
+                enemyScoreValue = 1;
+                break;
+        }
 
+        healthSystem.SetHealth(enemyMaxHealth);
 
         if (type == Type.MovingFighter) {
 
