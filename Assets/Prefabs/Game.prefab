@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7424783171513385741}
   - component: {fileID: 5400257198517051468}
+  - component: {fileID: 4374594497134928838}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -50,3 +51,30 @@ MonoBehaviour:
   player: {fileID: 0}
   mainBullet: {fileID: 0}
   camera: {fileID: 0}
+--- !u!114 &4374594497134928838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5763122565646761129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf6f9a8146c0c44a84dcee67911d3c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cruiser: 0
+  fighterFormationStationary: 0
+  fighterFormationHorizontal: 0
+  fighterLoneBack: 0
+  fighterLoneMoving: 0
+  station: 0
+  asteroid: 0
+  cruiserPrefab: {fileID: 463467920436471911, guid: 6b1c7d90ff974354abb94d9bfd5ff9ce, type: 3}
+  FFStationaryPrefab: {fileID: 3779986223459162702, guid: 488ff8bb7ad228747bddc122148c1c71, type: 3}
+  FFHorizontalPrefab: {fileID: 6602364041475358339, guid: 6ee26f602c0d56043b4d34fd15423e30, type: 3}
+  FLBackPrefab: {fileID: 3225700629000772840, guid: bd44d50e971107449b8b1a81b749c824, type: 3}
+  FLMovingPrefab: {fileID: 796712329534143192, guid: 8b0a0b3fcbb62214e95b6a3b4a8feaa5, type: 3}
+  stationPrefab: {fileID: 4364901357152226849, guid: a3f797fca30fe3449ac12d5cf2025f25, type: 3}
+  asteroidPrefab: {fileID: 1615481577552751122, guid: 7da67b55c29f2d74cba78e1369a20674, type: 3}
+  heatLevel: 0

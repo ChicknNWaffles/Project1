@@ -57,7 +57,6 @@ public class Enemy : MonoBehaviour
         inBurst = 0;
         target = transform.position;
         at = 0;
-        path = new Vector3[6];
 
         // health handling
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -116,6 +115,7 @@ public class Enemy : MonoBehaviour
     void Update() {
         if(transform.position == origin){
             if (path == null && type == Type.MovingFighter) {
+                path = new Vector3[6];
                 // generate 5 coordinates
                 for (var i = 0; i < 5; i++){
                     // generate x
