@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    //Audio Imports
+    [SerializeField] private AudioClip shoot_sound;
+    [SerializeField] private AudioClip damage_sound;
+    [SerializeField] private AudioClip game_over;
+
+    //Movement
     public float moveSpeed;
     private float canGoUp = 1.0f;
     private float canGoDown = 1.0f;
@@ -53,6 +60,7 @@ public class Player : MonoBehaviour
         if (healthSystem == null) Debug.LogError("HealthSystem is missing on Player!");
         if (spriteRenderer == null) Debug.LogError("SpriteRenderer is missing on Player!");
         if (playerCollider == null) Debug.LogError("Collider2D is missing on Player!");
+
     }
     
     // Update is called once per frame
@@ -123,6 +131,7 @@ public class Player : MonoBehaviour
         
         if (rb != null)
         {
+            SoundFXManager.Instance.PlaySoundClip(shoot_sound, transform, 1f);
             rb.velocity = firePoint.right * bulletSpeed;
         }
         
@@ -218,6 +227,7 @@ public class Player : MonoBehaviour
 
     // Damage and healing implementation, will be referenced whenever hit or healed
     public void TakeDamage(int damage) {
+        SoundFXManager.Instance.PlaySoundClip(damage_sound, transform, 1f);
         healthSystem.LoseHealth(damage);
         ScoreSystem.Instance.MultReset();
         if (healthSystem.GetHealth() <= 0) {
@@ -228,8 +238,9 @@ public class Player : MonoBehaviour
     // KILLS PLAYER
     private void Die() {
         Debug.Log("Player destroyed");
+        SoundFXManager.Instance.PlaySoundClip(game_over, transform, 1f);
         Destroy(gameObject);
-        Game.Instance.setGameOver(true);
+        Game.Instance.GameOver();
     }
 
     public void HealPlayer(int amount) {

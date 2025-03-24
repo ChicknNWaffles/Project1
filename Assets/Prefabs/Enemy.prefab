@@ -208,9 +208,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d488dbb39cc6b6a4d8734e1c5976aba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage_sound: {fileID: 8300000, guid: 1fdad14910ec518449d0d9e0b22330a7, type: 3}
   enemyBulletPrefab: {fileID: 8749688066518233701, guid: b75a106b40317f345b37d14d9e3c0e97, type: 3}
   type: 0
   moveSpeed: 0
   turnLikelihood: 0
+  bulletSpeed: 10
   enemyMaxHealth: 3
   enemyScoreValue: 1

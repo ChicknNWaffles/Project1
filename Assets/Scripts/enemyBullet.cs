@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
+
+    //Audio Imports
+    [SerializeField] private AudioClip shoot_sound;
+
     public int damage = 1;
     public float lifetime = 3f;
 
     void Start()
     {
+        SoundFXManager.Instance.PlaySoundClip(shoot_sound, transform, 1f);
+
         // Destroy the bullet after lifetime seconds
         // Destroy(gameObject, lifetime);
     }

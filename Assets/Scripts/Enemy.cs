@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
+    //Audio Imports
+    [SerializeField] private AudioClip damage_sound;
+
     // Public fields
     public enum Type {
         MovingFighter,
@@ -220,6 +224,7 @@ public class Enemy : MonoBehaviour
     
     // Links with the health system to take damage
     public void TakeDamage(int damage) {
+        SoundFXManager.Instance.PlaySoundClip(damage_sound, transform, 1f);
         healthSystem.LoseHealth(damage);
         if (healthSystem.GetHealth() <= 0) {
             Die();
