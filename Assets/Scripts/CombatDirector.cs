@@ -55,7 +55,7 @@ public class CombatDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // make sure the heat isn't above 3 or below 0
+        // make sure the Heat isn't above 3 or below 0
         if (heatLevel > 3) { heatLevel = 3; }
         if (heatLevel < 0) { heatLevel = 0; }
 
@@ -97,8 +97,8 @@ public class CombatDirector : MonoBehaviour
             }
 
 
-            // set a new stall timer depending on the "weight" of the enemies spawned, and the "heat" of the game
-            spawnTimer = 4 + heatLevel;
+            // set a new stall timer depending on the "weight" of the enemies spawned, and the "Heat" of the game
+            spawnTimer = 5 + (int)(heatLevel*1.5);
         }
         
 
@@ -116,6 +116,7 @@ public class CombatDirector : MonoBehaviour
      * ======================================================================================================================== */
 
     // the cruiser spawns a large formation of stationary fighters, so it has the strangest spawn conditions.
+    // At maximum Heat, spawns 3 cruisers that surround 6 stationary fighters
     void SpawnCruiserWave()
     {
         // pick a random x coordinate between 12 and 15
@@ -123,7 +124,7 @@ public class CombatDirector : MonoBehaviour
         // pick a random y coordinate between -2 and 2
         float y = Random.Range(-2f, 2f);
 
-        // when a cruiser is spawned, it may spawn some stationary fighters next to it depending on the heat level.
+        // when a cruiser is spawned, it may spawn some stationary fighters next to it depending on the Heat level.
         if (heatLevel >= 3)
         {
             SpawnAnEnemy(FFStationaryPrefab, x + 1, y + 1.5f);
@@ -152,6 +153,7 @@ public class CombatDirector : MonoBehaviour
 
     // most of the normal fighters (formation fighters (stationary and horizontal), lone fighters (back and moving) ) will spawn
     // in generally the same way: a cluster formation of ships.
+    // At maximum Heat, spawns a wall of stationary ships (with two in advance)
     void SpawnFFStationaryWave()
     {
         // pick a random x coordinate between 12 and 15
@@ -159,32 +161,33 @@ public class CombatDirector : MonoBehaviour
         // pick a random y coordinate between -4 and 4
         spawnPoint.y = Random.Range(-4f, 4f);
 
-        GameObject temp;
         spawnOffset.x = spawnPoint.x; spawnOffset.y = spawnPoint.y;
         // these fighters should sit still on the opposite side of the player.
-        // As the heat increases, so too does the pack size.
+        // As the Heat increases, so too does the pack size.
         if (heatLevel >= 3)
-        {
-            SpawnAnEnemy(FFStationaryPrefab, spawnPoint.x + 1, spawnPoint.y + 3);
-            SpawnAnEnemy(FFStationaryPrefab, spawnPoint.x + 1, spawnPoint.y -3);
-        }
-        if (heatLevel >= 2)
         {
             SpawnAnEnemy(FFStationaryPrefab, spawnPoint.x + 0, spawnPoint.y + 2);
             SpawnAnEnemy(FFStationaryPrefab, spawnPoint.x + 0, spawnPoint.y -2);
         }
-        if (heatLevel >= 1)
+        if (heatLevel >= 2)
         {
             SpawnAnEnemy(FFStationaryPrefab, spawnPoint.x + 1, spawnPoint.y + 1);
             SpawnAnEnemy(FFStationaryPrefab, spawnPoint.x + 1, spawnPoint.y -1);
         }
+        if (heatLevel >= 1)
+        {
+            SpawnAnEnemy(FFStationaryPrefab, spawnPoint.x + 0, spawnPoint.y + 1);
+            SpawnAnEnemy(FFStationaryPrefab, spawnPoint.x + 0, spawnPoint.y -1);
+        }
         if (heatLevel >= 0)
         {
-            // if heat is 0, spawn just the one figther
+            // if Heat is 0, spawn just the one figther
             SpawnAnEnemy(FFStationaryPrefab, spawnPoint.x, spawnPoint.y);
         }
 
     }
+
+    // At maximum Heat, spawn a V-shaped flock of ships.
     void SpawnFFHorizontalWave()
     {
         // pick a random x coordinate between 12 and 15
@@ -194,13 +197,13 @@ public class CombatDirector : MonoBehaviour
 
         if (heatLevel >= 3)
         {
-            SpawnAnEnemy(FFHorizontalPrefab, spawnPoint.x + 1, spawnPoint.y + 3);
-            SpawnAnEnemy(FFHorizontalPrefab, spawnPoint.x + 1, spawnPoint.y -3);
+            SpawnAnEnemy(FFHorizontalPrefab, spawnPoint.x + 3, spawnPoint.y + 3);
+            SpawnAnEnemy(FFHorizontalPrefab, spawnPoint.x + 3, spawnPoint.y -3);
         }
         if (heatLevel >= 2)
         {
-            SpawnAnEnemy(FFHorizontalPrefab, spawnPoint.x + 0, spawnPoint.y + 2);
-            SpawnAnEnemy(FFHorizontalPrefab, spawnPoint.x + 0, spawnPoint.y -2);
+            SpawnAnEnemy(FFHorizontalPrefab, spawnPoint.x + 2, spawnPoint.y + 2);
+            SpawnAnEnemy(FFHorizontalPrefab, spawnPoint.x + 2, spawnPoint.y -2);
         }
         if (heatLevel >= 1)
         {
@@ -209,11 +212,13 @@ public class CombatDirector : MonoBehaviour
         }
         if (heatLevel >= 0)
         {
-            // if heat is 0, spawn just the one figther
+            // if Heat is 0, spawn just the one figther
             SpawnAnEnemy(FFHorizontalPrefab, spawnPoint.x, spawnPoint.y);
         }
 
     }
+
+    // At maximum Heat, spawn a zig-zag of ships
     void SpawnFLBackWave()
     {
         // pick a random x coordinate between 12 and 15
@@ -233,17 +238,18 @@ public class CombatDirector : MonoBehaviour
         }
         if (heatLevel >= 1)
         {
-            // on easy heat, spawn two more figthers offset a bit (back and to the sides, making a V)
             SpawnAnEnemy(FLBackPrefab, spawnPoint.x + 1, spawnPoint.y + 1);
             SpawnAnEnemy(FLBackPrefab, spawnPoint.x + 1, spawnPoint.y -1);
         }
         if (heatLevel >= 0)
         {
-            // if heat is 0, spawn just the one figther
+            // if Heat is 0, spawn just the one figther
             SpawnAnEnemy(FLBackPrefab, spawnPoint.x, spawnPoint.y);
         }
 
     }
+
+    // On maximum Heat, spawn a flat wall of ships
     void SpawnFLMovingWave()
     {
         // pick a random x coordinate between 12 and 15
@@ -252,31 +258,31 @@ public class CombatDirector : MonoBehaviour
         spawnPoint.y = Random.Range(-4f, 4f);
 
         if (heatLevel >= 3){
-            SpawnAnEnemy(FLMovingPrefab, spawnPoint.x + 1, spawnPoint.y + 3);
-            SpawnAnEnemy(FLMovingPrefab, spawnPoint.x + 1, spawnPoint.y -3);
+            SpawnAnEnemy(FLMovingPrefab, spawnPoint.x + 0, spawnPoint.y + 3);
+            SpawnAnEnemy(FLMovingPrefab, spawnPoint.x + 0, spawnPoint.y -3);
         }
         if(heatLevel >=2){
             SpawnAnEnemy(FLMovingPrefab, spawnPoint.x + 0, spawnPoint.y + 2);
             SpawnAnEnemy(FLMovingPrefab, spawnPoint.x + 0, spawnPoint.y -2);
         }
         if (heatLevel >= 1){
-            SpawnAnEnemy(FLMovingPrefab, spawnPoint.x + 1, spawnPoint.y + 1);
-            SpawnAnEnemy(FLMovingPrefab, spawnPoint.x + 1, spawnPoint.y -1);
+            SpawnAnEnemy(FLMovingPrefab, spawnPoint.x + 0, spawnPoint.y + 1);
+            SpawnAnEnemy(FLMovingPrefab, spawnPoint.x + 0, spawnPoint.y -1);
         }
-        if (heatLevel >= 0){ 
-            // if heat is 0, spawn just the one figther
+        if (heatLevel >= 0){
+            // if Heat is 0, spawn just the one figther
             SpawnAnEnemy(FLMovingPrefab, spawnPoint.x, spawnPoint.y);
         }
 
     }
     
-    // asteroids and stations should have similar spawns
+    // asteroids and stations should have similar spawns. Stations have fewer spawns per Heat, though, since they shoot.
     void SpawnStationWave()
     {
 
-        // stations should spawn in random clusters that increase in size along with the heat.
-        // 7 stations are spawned at heat 3, and two less are spawned as the heat goes down.
-        for (int i = heatLevel * 2; i >= 0; i--)
+        // stations should spawn in random clusters that increase in size along with the Heat.
+        // 7 stations are spawned at Heat 3, and two less are spawned as the Heat goes down.
+        for (int i = heatLevel; i >= 0; i--)
         {
             // pick a random x coordinate between 12 and 15
             float x = Random.Range(12f, 15f);
@@ -291,8 +297,8 @@ public class CombatDirector : MonoBehaviour
     void SpawnAsteroidWave()
     {
 
-        // asteroids should spawn in random clusters that increase in size along with the heat.
-        // 7 asteroids are spawned at heat 3, and two less are spawned as the heat goes down.
+        // asteroids should spawn in random clusters that increase in size along with the Heat.
+        // 7 asteroids are spawned at Heat 3, and two less are spawned as the Heat goes down.
         for (int i = heatLevel * 2; i >= 0; i--)
         {
             // pick a random x coordinate between 12 and 15
