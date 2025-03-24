@@ -23,11 +23,12 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 3;
     public float turnLikelihood;
     public float bulletSpeed = 10f;
-    public Vector3 target;
-    public bool readyToStart = false;
+    public Vector3 origin;
 
 
     // Private fields
+    private Vector3 target;
+    private bool readyToStart = false;
     private float curTurnLikelihood;
     private Vector3 direction;
     private float pathTimer;
@@ -109,30 +110,35 @@ public class Enemy : MonoBehaviour
         }
 
         healthSystem.SetHealth(enemyMaxHealth);
-
-        if (type == Type.MovingFighter) {
-
-            // generate 5 coordinates
-            for (var i = 0; i < 5; i++) {
-                // generate x
-                var x = Random.Range(-5.5f, 8.0f);
-                // generate y
-                var y = Random.Range(-4.5f, 4.0f);
-
-                // add coords to path
-                var newCoord = new Vector3(x, y, 0.0f);
-                path[i] = newCoord;
-            }
-
-            // put the start position as the last coord
-            // to complete the loop
-            path[5] = transform.position;
-
-        }
     }
 
     // Update is called once per frame
     void Update() {
+        if(transform.position == origin){
+            if (path == null && type == Type.MovingFighter) {
+                // generate 5 coordinates
+                for (var i = 0; i < 5; i++)
+                {
+                    // generate x
+                    var x = Random.Range(-5.5f, 8.0f);
+                    // generate y
+                    var y = Random.Range(-4.5f, 4.0f);
+
+                    // add coords to path
+                    var newCoord = new Vector3(x, y, 0.0f);
+                    path[i] = newCoord;
+                }
+
+                // put the start position as the last coord
+                // to complete the loop
+                path[5] = transform.position;
+            }
+
+            readyToStart = true;
+
+        }
+
+
         pathTimer -= Time.deltaTime;
         if (pathTimer < 0 && readyToStart) {
             pathfind();
