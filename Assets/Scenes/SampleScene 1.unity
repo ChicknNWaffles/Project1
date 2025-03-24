@@ -1656,6 +1656,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184d92230d3f66647a5c69ae404996e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shoot_sound: {fileID: 0}
+  charge_shoot_sound: {fileID: 0}
+  damage_sound: {fileID: 0}
+  death_sound: {fileID: 0}
+  game_over: {fileID: 0}
   moveSpeed: 5
   bulletPrefab: {fileID: 1656625110}
   chargeBulletPrefab: {fileID: 1904527843}
@@ -2169,38 +2174,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 402728970043100204, guid: 49c2fa15f4f74034c9782fa42e770c70, type: 3}
   m_PrefabInstance: {fileID: 2538899379998840860}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1692767523 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5763122565646761129, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
-  m_PrefabInstance: {fileID: 95006530296203344}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1692767524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1692767523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecf6f9a8146c0c44a84dcee67911d3c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cruiser: 1
-  fighterFormationStationary: 1
-  fighterFormationHorizontal: 1
-  fighterLoneBack: 1
-  fighterLoneMoving: 1
-  station: 1
-  asteroid: 1
-  cruiserPrefab: {fileID: 463467920436471911, guid: 6b1c7d90ff974354abb94d9bfd5ff9ce, type: 3}
-  FFStationaryPrefab: {fileID: 3779986223459162702, guid: 488ff8bb7ad228747bddc122148c1c71, type: 3}
-  FFHorizontalPrefab: {fileID: 6602364041475358339, guid: 6ee26f602c0d56043b4d34fd15423e30, type: 3}
-  FLBackPrefab: {fileID: 3225700629000772840, guid: bd44d50e971107449b8b1a81b749c824, type: 3}
-  FLMovingPrefab: {fileID: 796712329534143192, guid: 8b0a0b3fcbb62214e95b6a3b4a8feaa5, type: 3}
-  stationPrefab: {fileID: 4364901357152226849, guid: a3f797fca30fe3449ac12d5cf2025f25, type: 3}
-  asteroidPrefab: {fileID: 1615481577552751122, guid: 7da67b55c29f2d74cba78e1369a20674, type: 3}
-  heatLevel: 3
 --- !u!1 &1699481392
 GameObject:
   m_ObjectHideFlags: 0
@@ -3229,6 +3202,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4374594497134928838, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
+      propertyPath: cruiser
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374594497134928838, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
+      propertyPath: station
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374594497134928838, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
+      propertyPath: heatLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374594497134928838, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
+      propertyPath: fighterLoneBack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374594497134928838, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
+      propertyPath: fighterLoneMoving
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374594497134928838, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
+      propertyPath: fighterFormationHorizontal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374594497134928838, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
+      propertyPath: fighterFormationStationary
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: camera
       value: 
@@ -3292,10 +3293,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5763122565646761129, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1692767524}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
 --- !u!1001 &1681867727629409510
 PrefabInstance:
