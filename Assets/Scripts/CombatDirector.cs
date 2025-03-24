@@ -109,6 +109,7 @@ public class CombatDirector : MonoBehaviour
         spawnOffset.x = x; spawnOffset.y = y;
         GameObject temp = Instantiate(prefab);
         temp.transform.position = spawnOffset;
+        // temp.origin.x = spawnOffset.x-4; temp.origin.y = spawnOffset.y;
     }
 
     /* ========================================================================================================================
@@ -119,24 +120,24 @@ public class CombatDirector : MonoBehaviour
     // At maximum Heat, spawns 3 cruisers that surround 6 stationary fighters
     void SpawnCruiserWave()
     {
-        // pick a random x coordinate between 12 and 15
-        float x = Random.Range(12f, 15f);
+        // pick a random x coordinate between 12 and 13
+        float x = Random.Range(12f, 13f);
         // pick a random y coordinate between -2 and 2
-        float y = Random.Range(-2f, 2f);
+        float y = Random.Range(-1f, 1f);
 
         // when a cruiser is spawned, it may spawn some stationary fighters next to it depending on the Heat level.
         if (heatLevel >= 3)
         {
-            SpawnAnEnemy(FFStationaryPrefab, x + 1, y + 1.5f);
-            SpawnAnEnemy(FFStationaryPrefab, x + 1, y -1.5f);
+            SpawnAnEnemy(FFStationaryPrefab, x + 0, y + 1.5f);
+            SpawnAnEnemy(FFStationaryPrefab, x + 0, y -1.5f);
 
             SpawnAnEnemy(cruiserPrefab, spawnPoint.x + 0, spawnPoint.y + 3.5f);
             SpawnAnEnemy(cruiserPrefab, spawnPoint.x + 0, spawnPoint.y -3.5f);
         }
         if (heatLevel >= 2)
         {
-            SpawnAnEnemy(FFStationaryPrefab, spawnPoint.x + 0, spawnPoint.y + 2);
-            SpawnAnEnemy(FFStationaryPrefab, spawnPoint.x + 0, spawnPoint.y -2);
+            SpawnAnEnemy(FFStationaryPrefab, spawnPoint.x + 1, spawnPoint.y + 2);
+            SpawnAnEnemy(FFStationaryPrefab, spawnPoint.x + 1, spawnPoint.y -2);
         }
         if (heatLevel >= 1)
         {
@@ -156,8 +157,8 @@ public class CombatDirector : MonoBehaviour
     // At maximum Heat, spawns a wall of stationary ships (with two in advance)
     void SpawnFFStationaryWave()
     {
-        // pick a random x coordinate between 12 and 15
-        spawnPoint.x = Random.Range(12f, 15f);
+        // pick a random x coordinate between 12 and 13
+        spawnPoint.x = Random.Range(12f, 13f);
         // pick a random y coordinate between -4 and 4
         spawnPoint.y = Random.Range(-4f, 4f);
 
@@ -190,8 +191,8 @@ public class CombatDirector : MonoBehaviour
     // At maximum Heat, spawn a V-shaped flock of ships.
     void SpawnFFHorizontalWave()
     {
-        // pick a random x coordinate between 12 and 15
-        spawnPoint.x = Random.Range(12f, 15f);
+        // pick a random x coordinate between 12 and 13
+        spawnPoint.x = Random.Range(12f, 13f);
         // pick a random y coordinate between -4 and 4
         spawnPoint.y = Random.Range(-4f, 4f);
 
@@ -221,8 +222,8 @@ public class CombatDirector : MonoBehaviour
     // At maximum Heat, spawn a zig-zag of ships
     void SpawnFLBackWave()
     {
-        // pick a random x coordinate between 12 and 15
-        spawnPoint.x = Random.Range(12f, 15f);
+        // pick a random x coordinate between 12 and 13
+        spawnPoint.x = Random.Range(12f, 13f);
         // pick a random y coordinate between -4 and 4
         spawnPoint.y = Random.Range(-4f, 4f);
 
@@ -252,8 +253,8 @@ public class CombatDirector : MonoBehaviour
     // On maximum Heat, spawn a flat wall of ships
     void SpawnFLMovingWave()
     {
-        // pick a random x coordinate between 12 and 15
-        spawnPoint.x = Random.Range(12f, 15f);
+        // pick a random x coordinate between 12 and 13
+        spawnPoint.x = Random.Range(12f, 13f);
         // pick a random y coordinate between -4 and 4
         spawnPoint.y = Random.Range(-4f, 4f);
 
