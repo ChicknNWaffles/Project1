@@ -136,10 +136,12 @@ public class Enemy : MonoBehaviour
 
             readyToStart = true;
 
+        }else{
+            target = origin;
         }
 
 
-        pathTimer -= Time.deltaTime;
+            pathTimer -= Time.deltaTime;
         if (pathTimer < 0 && readyToStart) {
             pathfind();
             pathTimer = 0.5f;
@@ -174,6 +176,13 @@ public class Enemy : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    void OnBecameInvisible() { 
+        if (readyToStart) {
+            print("Enemy Despawned");
+            Destroy(gameObject);
         }
     }
 
