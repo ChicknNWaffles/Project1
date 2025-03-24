@@ -16,6 +16,7 @@ public class HealthBar : MonoBehaviour {
     void Start() {
         healthFill.maxValue = 1;
         healthFill.value = 1;
+        originalPosition = healthFill.transform.position;
     }
 
     // reduces the hp bar visually and changes the color over time to red
