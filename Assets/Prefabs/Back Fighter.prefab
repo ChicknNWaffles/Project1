@@ -17,12 +17,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -2488687300772079166, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
+      propertyPath: damage_sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1fdad14910ec518449d0d9e0b22330a7, type: 3}
+    - target: {fileID: -2488687300772079166, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
       propertyPath: turnLikelihood
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4877148505845150358, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
       propertyPath: m_Name
-      value: Back Fighter Variant
+      value: Back Fighter
       objectReference: {fileID: 0}
     - target: {fileID: 7228782696520288269, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -64,7 +68,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6746864968684392037, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

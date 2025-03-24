@@ -203,5 +203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1333bbe4ee2971449bf349c3aadfd179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shoot_sound: {fileID: 8300000, guid: b8e0f1d1232a81b41b612c139f7f57ea, type: 3}
   damage: 1
   lifetime: 3

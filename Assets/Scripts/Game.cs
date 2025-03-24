@@ -59,14 +59,9 @@ public class Game : MonoBehaviour {
 
     public void GameOver()
     {
-        
+
+        Time.timeScale = 0f;
         gameOverScreen.SetActive(true);
-
-    }
-
-    public void setGameOver(bool gameOver) {
-
-        this.gameOver = gameOver;
 
     }
 

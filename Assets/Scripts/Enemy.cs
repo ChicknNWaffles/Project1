@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
+    //Audio Imports
+    [SerializeField] private AudioClip damage_sound;
+
     // Public fields
     public enum Type {
         MovingFighter,
@@ -19,10 +23,11 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 3;
     public float turnLikelihood;
     public float bulletSpeed = 10f;
-    
+    public Vector3 target;
+    public bool readyToStart = false;
+
 
     // Private fields
-    private Vector3 target;
     private float curTurnLikelihood;
     private Vector3 direction;
     private float pathTimer;
@@ -129,7 +134,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update() {
         pathTimer -= Time.deltaTime;
-        if (pathTimer < 0) {
+        if (pathTimer < 0 && readyToStart) {
             pathfind();
             pathTimer = 0.5f;
         }
@@ -137,28 +142,30 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
 
         // shooting
-        if(type != Type.Asteroid){
-            shootTimer -= Time.deltaTime;
-            if (shootTimer < 0) { 
-                if(type == Type.Station){
-                    var playerPos = Game.Instance.playerObj.transform.position;
-                    //var playerPos = transform.position;
-                    var curPos = transform.position;
-                    var direction = playerPos - curPos;
-                    Shoot(direction);
-                    shootTimer = Random.Range(1.0f, 2.5f);
-                }else if (type == Type.BattleCruiser) {
-                    Shoot();
-                    if (inBurst == 0) {
-                        shootTimer = Random.Range(2.5f, 4.0f);
-                        inBurst = 5;
-                    }else {
-                        shootTimer = 0.2f;
-                        inBurst -= 1;
+        if (readyToStart) {
+            if (type != Type.Asteroid) {
+                shootTimer -= Time.deltaTime;
+                if (shootTimer < 0) {
+                    if (type == Type.Station) {
+                        var playerPos = Game.Instance.playerObj.transform.position;
+                        //var playerPos = transform.position;
+                        var curPos = transform.position;
+                        var direction = playerPos - curPos;
+                        Shoot(direction);
+                        shootTimer = Random.Range(1.0f, 2.5f);
+                    } else if (type == Type.BattleCruiser) {
+                        Shoot();
+                        if (inBurst == 0) {
+                            shootTimer = Random.Range(2.5f, 4.0f);
+                            inBurst = 5;
+                        } else {
+                            shootTimer = 0.2f;
+                            inBurst -= 1;
+                        }
+                    } else {
+                        Shoot();
+                        shootTimer = Random.Range(1.0f, 2.5f);
                     }
-                } else {
-                    Shoot();
-                    shootTimer = Random.Range(1.0f, 2.5f);
                 }
             }
         }
@@ -220,6 +227,7 @@ public class Enemy : MonoBehaviour
     
     // Links with the health system to take damage
     public void TakeDamage(int damage) {
+        SoundFXManager.Instance.PlaySoundClip(damage_sound, transform, 1f);
         healthSystem.LoseHealth(damage);
         if (healthSystem.GetHealth() <= 0) {
             Die();
