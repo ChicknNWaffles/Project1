@@ -117,8 +117,7 @@ public class Enemy : MonoBehaviour
         if(transform.position == origin){
             if (path == null && type == Type.MovingFighter) {
                 // generate 5 coordinates
-                for (var i = 0; i < 5; i++)
-                {
+                for (var i = 0; i < 5; i++){
                     // generate x
                     var x = Random.Range(-5.5f, 8.0f);
                     // generate y
@@ -135,13 +134,12 @@ public class Enemy : MonoBehaviour
             }
 
             readyToStart = true;
-
-        }else{
+        }else if (!readyToStart){
             target = origin;
         }
 
 
-            pathTimer -= Time.deltaTime;
+        pathTimer -= Time.deltaTime;
         if (pathTimer < 0 && readyToStart) {
             pathfind();
             pathTimer = 0.5f;
