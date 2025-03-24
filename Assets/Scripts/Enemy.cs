@@ -18,7 +18,6 @@ public class Enemy : MonoBehaviour
         Station,
         Asteroid
     }
-    public static Enemy Instance { get; private set; }
     public GameObject enemyBulletPrefab;
     public Type type;
     public float moveSpeed = 3;
