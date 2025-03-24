@@ -123,9 +123,9 @@ public class CombatDirector : MonoBehaviour
     void SpawnCruiserWave()
     {
         // pick a random x coordinate between 12 and 13
-        float x = Random.Range(12f, 13f);
+        spawnPoint.x = Random.Range(12f, 13f);
         // pick a random y coordinate between -2 and 2
-        float y = Random.Range(-1f, 1f);
+        spawnPoint.y = Random.Range(-1f, 1f);
 
         // when a cruiser is spawned, it may spawn some stationary fighters next to it depending on the Heat level.
         if (heatLevel >= 3)
@@ -134,7 +134,7 @@ public class CombatDirector : MonoBehaviour
             SpawnAnEnemy(FFStationaryPrefab, x + 0, y -1.5f);
 
             SpawnAnEnemy(cruiserPrefab, spawnPoint.x + 0, spawnPoint.y + 3.5f);
-            SpawnAnEnemy(cruiserPrefab, spawnPoint.x + 0, spawnPoint.y -3.5f);
+            SpawnAnEnemy(cruiserPrefab, spawnPoint.x + 0, spawnPoint.y - 3.5f);
         }
         if (heatLevel >= 2)
         {
