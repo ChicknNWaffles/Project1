@@ -27,7 +27,7 @@ public class SceneTransition : MonoBehaviour {
     }
 
     // fades scene to black or whatever color is set before loading it
-    IEnumerator FadeLoadScene(string sceneName) {
+    public IEnumerator FadeLoadScene(string sceneName) {
         Time.timeScale = 1f;
         float elapsedTime = 0;
         Color color = fadeImage.color;
