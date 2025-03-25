@@ -67,6 +67,7 @@ public class Game : MonoBehaviour {
         if (hasWon)
         {
             print("You Won!");
+            SceneManager.LoadScene(2);
         }
 
     }
