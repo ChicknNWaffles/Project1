@@ -44,9 +44,9 @@ public class Game : MonoBehaviour {
         Input = new ShooterControls();
         Input.Enable();
         SceneManager.activeSceneChanged += disableInput;
+        msgArray = objectiveStatement.ToCharArray();
         Time.timeScale = 1f;
         gameOverScreen.SetActive(false);
-        msgArray = objectiveStatement.ToCharArray();
 
     }
 
