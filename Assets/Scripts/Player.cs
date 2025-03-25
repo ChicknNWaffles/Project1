@@ -298,6 +298,8 @@ public class Player : MonoBehaviour
                     canGoDown = 0.0f;
                 }
             }
+        }else if (collision.CompareTag("Enemy")){
+            TakeDamage(10);
         }
     }
     
