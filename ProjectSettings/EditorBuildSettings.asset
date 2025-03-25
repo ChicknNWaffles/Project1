@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LVL4 - Blockade Buster.unity
     guid: ffd4700372d7cab46a5afdda78d4eee0
+  - enabled: 1
+    path: Assets/Scenes/LVL0 - ENDLESS.unity
+    guid: 52472de543731ff488e1036ed0053db7
   m_configObjects: {}
