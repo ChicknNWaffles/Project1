@@ -20,8 +20,6 @@ public class Bullet : MonoBehaviour
             // Rotate around the Z-axis for 2D rotation
             transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
         }
-
-        
     }
     
     void OnTriggerEnter2D(Collider2D collision)
@@ -33,9 +31,15 @@ public class Bullet : MonoBehaviour
             {
                 enemy.TakeDamage(damage);
             }
-            
-            // Destroy the bullet
-            Destroy(gameObject);
+
+            // if the bullet is a chargeBullet, then trigger an explosion.
+            if (gameObject.CompareTag("chargeBullet"))
+            {
+
+            }
+
+                // Destroy the bullet
+                Destroy(gameObject);
         }
     }
 
