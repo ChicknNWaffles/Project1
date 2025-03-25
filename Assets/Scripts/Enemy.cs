@@ -254,6 +254,7 @@ public class Enemy : MonoBehaviour
             ScoreSystem.Instance.ScoreIncrease(enemyScoreValue);
             ScoreSystem.Instance.MultIncrease();
         }
+        Game.Instance.GetComponent<Game>().kills += 1;
         Debug.Log("Enemy destroyed");
         Destroy(gameObject);
     }

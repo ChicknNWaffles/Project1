@@ -47,6 +47,10 @@ public class Player : MonoBehaviour
 
     // Health implementation
     private HealthSystem healthSystem;
+
+    // Keeps track of kills for win condition
+    public int kills = 0;
+
     // Start is called before the first frame update
    
     void Start()
