@@ -100,7 +100,7 @@ public class CombatDirector : MonoBehaviour
                 }
 
 
-                // set a new stall timer depending on the "weight" of the enemies spawned, and the "Heat" of the game
+                // set a new stall timer depending on the "Heat" of the game
                 spawnTimer = 2 + (int)(heatLevel * 1.5);
                 // increment the wave number
                 waveNumber += 1;
@@ -288,7 +288,7 @@ public class CombatDirector : MonoBehaviour
     {
 
         // stations should spawn in random clusters that increase in size along with the Heat.
-        // 7 stations are spawned at Heat 3, and two less are spawned as the Heat goes down.
+        // 4 stations are spawned at Heat 3, and one less is spawned as the Heat goes down.
         for (int i = heatLevel; i >= 0; i--)
         {
             // pick a random x coordinate between 12 and 15
