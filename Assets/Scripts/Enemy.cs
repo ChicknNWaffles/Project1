@@ -75,28 +75,28 @@ public class Enemy : MonoBehaviour
         // setting the enemy scores based on type
         switch (type) {
             case Type.MovingFighter:
-                enemyMaxHealth = 3;
+                enemyMaxHealth = 2;
                 enemyScoreValue = 5;
                 break;
             case Type.FormationFighterMoving:
-                enemyMaxHealth = 3;
+                enemyMaxHealth = 2;
                 enemyScoreValue = 10;
                 break;
             case Type.FormationFighterStationary:
-                enemyMaxHealth = 3;
+                enemyMaxHealth = 4;
                 enemyScoreValue = 8;
                 break;
             case Type.BackFighter:
-                enemyMaxHealth = 3;
+                enemyMaxHealth = 4;
                 enemyScoreValue = 12;
                 break;
             case Type.BattleCruiser:
-                enemyMaxHealth = 8;
+                enemyMaxHealth = 10;
                 enemyScoreValue = 20;
                 break;
             case Type.Station:
-                enemyMaxHealth = 12;
-                enemyScoreValue = 25;
+                enemyMaxHealth = 15;
+                enemyScoreValue = 30;
                 break;
             case Type.Asteroid:
                 enemyMaxHealth = 2;
