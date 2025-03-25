@@ -19,6 +19,16 @@ public class EnemyBullet : MonoBehaviour
         // Destroy(gameObject, lifetime);
     }
 
+    void Update()
+    {
+        // Despawn if offscreen
+        if (transform.position.x < -9.5)
+        {
+            print("Despawned enemy bullet");
+            Destroy(gameObject);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the bullet hit an enemy

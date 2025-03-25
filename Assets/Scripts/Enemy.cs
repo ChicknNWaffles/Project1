@@ -144,6 +144,7 @@ public class Enemy : MonoBehaviour
             pathfind();
             pathTimer = 0.5f;
         }
+
         // Moves enemy towards target chosen by pathfinder
         transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
 
