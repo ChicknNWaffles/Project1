@@ -1184,7 +1184,8 @@ PrefabInstance:
       objectReference: {fileID: 766097358}
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: objectiveStatement
-      value: blablabla
+      value: 'Commander Skronk: Welcome to the Simulator Cadet! Blow up as many enemy
+        ships as you can, and survive as long as you can. Good training!'
       objectReference: {fileID: 0}
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: objectiveStatementObj
