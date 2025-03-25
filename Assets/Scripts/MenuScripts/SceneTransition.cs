@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class SceneTransition : MonoBehaviour {
 
     public Image fadeImage;
-    public float fadeDuration = 1.5f;
+    public float fadeDuration = 1.0f;
 
      private void Start() {
         if (fadeImage != null) {

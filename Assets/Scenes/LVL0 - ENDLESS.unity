@@ -614,6 +614,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 23.817987, y: 12.254834}
   m_EdgeRadius: 0
+--- !u!1 &766097358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 725017104364724285, guid: 15aa4e966d665bc43a4e5b0dadf7d8f8, type: 3}
+  m_PrefabInstance: {fileID: 945020207}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &881865156
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1092,7 +1097,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 000b3b372edc105458dbfadc21096512, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 000a18abcaecf974d8c59e150d73eacb, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
   m_Pitch: 1
@@ -1273,7 +1278,7 @@ PrefabInstance:
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: gameOverScreen
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 766097358}
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: objectiveStatement
       value: Objective is this
