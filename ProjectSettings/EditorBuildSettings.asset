@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/LVL1 - Fleet Fights.unity
     guid: 64472497d18e32042bfd0c49b0ecf2eb
   - enabled: 1
-    path: Assets/Scenes/LVL0 - ENDLESS.unity
+    path: Assets/Scenes/LVL5 - Boss time.unity
     guid: 40da141244a2cb04a9f5a7b7bed90bdf
   - enabled: 1
     path: Assets/Scenes/LVL2 - Low-Orbit Lightshow.unity

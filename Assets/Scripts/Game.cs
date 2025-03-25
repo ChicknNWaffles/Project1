@@ -22,7 +22,7 @@ public class Game : MonoBehaviour {
     public Camera camera;
     public WinType winType;
     public int winCond;
-    private bool hasWon = false;
+    public bool hasWon = false;
     private bool gameOver = false;
     public float curTime = 0.0f;
     private bool paused = false;

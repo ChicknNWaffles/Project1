@@ -16,7 +16,8 @@ public class Enemy : MonoBehaviour
         BackFighter,
         BattleCruiser,
         Station,
-        Asteroid
+        Asteroid,
+        BossStation
     }
     public GameObject enemyBulletPrefab;
     public Type type;
@@ -102,6 +103,10 @@ public class Enemy : MonoBehaviour
                 enemyMaxHealth = 2;
                 enemyScoreValue = 2;
                 break;
+            case Type.BossStation:
+                enemyMaxHealth = 150;
+                enemyScoreValue = 5000;
+                break;
             default:
                 enemyMaxHealth = 3;
                 enemyScoreValue = 1;
@@ -153,13 +158,17 @@ public class Enemy : MonoBehaviour
             if (type != Type.Asteroid) {
                 shootTimer -= Time.deltaTime;
                 if (shootTimer < 0) {
-                    if (type == Type.Station) {
-                        var playerPos = Game.Instance.playerObj.transform.position;
+                    if ((type == Type.Station) || (type == Type.BossStation)) {
+                        Vector3 playerPos = Game.Instance.playerObj.transform.position;
                         //var playerPos = transform.position;
-                        var curPos = transform.position;
-                        var direction = playerPos - curPos;
+                        Vector3 curPos = transform.position;
+                        Vector3 direction = playerPos - curPos;
                         Shoot(direction);
                         shootTimer = Random.Range(1.0f, 2.5f);
+                        if(type == Type.BossStation)
+                        {
+                            inBurst = 5;
+                        }
                     } else if (type == Type.BattleCruiser) {
                         Shoot();
                         if (inBurst == 0) {
@@ -257,6 +266,11 @@ public class Enemy : MonoBehaviour
         Game.Instance.GetComponent<Game>().kills += 1;
         Debug.Log("Enemy destroyed");
         Destroy(gameObject);
+
+        if(type == Type.BossStation)
+        {
+            Game.Instance.GetComponent<Game>().hasWon = true;
+        }
     }
 
     private void Shoot() {
