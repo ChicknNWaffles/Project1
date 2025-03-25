@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage_sound: {fileID: 8300000, guid: 1fdad14910ec518449d0d9e0b22330a7, type: 3}
-  enemyBulletPrefab: {fileID: 8749688066518233701, guid: b75a106b40317f345b37d14d9e3c0e97, type: 3}
+  enemyBulletPrefab: {fileID: 23594869722639579, guid: cf1ecbb9e9449934586e3851ba21f7ce, type: 3}
   type: 0
   moveSpeed: 0
   turnLikelihood: 0
