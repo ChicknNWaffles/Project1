@@ -745,6 +745,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8167508852434523711, guid: 15aa4e966d665bc43a4e5b0dadf7d8f8, type: 3}
   m_PrefabInstance: {fileID: 945020207}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &945020209 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 725017104364724285, guid: 15aa4e966d665bc43a4e5b0dadf7d8f8, type: 3}
+  m_PrefabInstance: {fileID: 945020207}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &951336540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1798,7 +1803,7 @@ PrefabInstance:
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: gameOverScreen
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 945020209}
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: objectiveStatement
       value: Objective is this defeat the boss
@@ -2243,6 +2248,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1552333657901427717, guid: 446fad4ab4b2d894b9ec80dd97511fda, type: 3}
+      propertyPath: m_Color.b
+      value: 0.028924897
+      objectReference: {fileID: 0}
+    - target: {fileID: 1552333657901427717, guid: 446fad4ab4b2d894b9ec80dd97511fda, type: 3}
+      propertyPath: m_Color.g
+      value: 0.028924897
+      objectReference: {fileID: 0}
+    - target: {fileID: 1552333657901427717, guid: 446fad4ab4b2d894b9ec80dd97511fda, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4716981
+      objectReference: {fileID: 0}
+    - target: {fileID: 2173102364288624669, guid: 446fad4ab4b2d894b9ec80dd97511fda, type: 3}
+      propertyPath: pulseColor.b
+      value: 0.12646852
+      objectReference: {fileID: 0}
+    - target: {fileID: 2173102364288624669, guid: 446fad4ab4b2d894b9ec80dd97511fda, type: 3}
+      propertyPath: pulseColor.g
+      value: 0.12646852
+      objectReference: {fileID: 0}
+    - target: {fileID: 2173102364288624669, guid: 446fad4ab4b2d894b9ec80dd97511fda, type: 3}
+      propertyPath: pulseColor.r
+      value: 0.9245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716189519519158935, guid: 446fad4ab4b2d894b9ec80dd97511fda, type: 3}
+      propertyPath: pulseColor.b
+      value: 0.1254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716189519519158935, guid: 446fad4ab4b2d894b9ec80dd97511fda, type: 3}
+      propertyPath: pulseColor.g
+      value: 0.1254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716189519519158935, guid: 446fad4ab4b2d894b9ec80dd97511fda, type: 3}
+      propertyPath: pulseColor.r
+      value: 0.9254902
+      objectReference: {fileID: 0}
     - target: {fileID: 6735465733465132727, guid: 446fad4ab4b2d894b9ec80dd97511fda, type: 3}
       propertyPath: m_Name
       value: Backgrounds
@@ -2326,6 +2367,18 @@ PrefabInstance:
     - target: {fileID: 7330745083337572580, guid: 446fad4ab4b2d894b9ec80dd97511fda, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9080499919311072842, guid: 446fad4ab4b2d894b9ec80dd97511fda, type: 3}
+      propertyPath: m_Color.b
+      value: 0.028924897
+      objectReference: {fileID: 0}
+    - target: {fileID: 9080499919311072842, guid: 446fad4ab4b2d894b9ec80dd97511fda, type: 3}
+      propertyPath: m_Color.g
+      value: 0.028924897
+      objectReference: {fileID: 0}
+    - target: {fileID: 9080499919311072842, guid: 446fad4ab4b2d894b9ec80dd97511fda, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4716981
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
