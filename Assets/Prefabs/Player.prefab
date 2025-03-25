@@ -134,6 +134,7 @@ MonoBehaviour:
   damage_sound: {fileID: 8300000, guid: 1d5f2ef0be3ea4a4692fa1a715dfcb82, type: 3}
   death_sound: {fileID: 8300000, guid: 841ee8bedeedd864f90c2d6416881548, type: 3}
   game_over: {fileID: 8300000, guid: 9d3f2e631aa672a4a8d18e02cca99507, type: 3}
+  dodgeStartSound: {fileID: 8300000, guid: 1035cc0abde1f7b4a9573a821112d479, type: 3}
   moveSpeed: 5
   bulletPrefab: {fileID: 0}
   chargeBulletPrefab: {fileID: 0}
@@ -143,8 +144,9 @@ MonoBehaviour:
   maxChargeTime: 2
   minDamageMultiplier: 1
   maxDamageMultiplier: 3
+  dodgeCooldownImage: {fileID: 0}
   dodgeDuration: 0.5
-  dodgeCooldown: 3
+  dodgeCooldown: 5
 --- !u!114 &5203447129657092214
 MonoBehaviour:
   m_ObjectHideFlags: 0

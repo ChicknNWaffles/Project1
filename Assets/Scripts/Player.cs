@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip damage_sound;
     [SerializeField] private AudioClip death_sound;
     [SerializeField] private AudioClip game_over;
+    [SerializeField] private AudioClip dodgeStartSound;
 
     //Movement
     public float moveSpeed;
@@ -37,9 +38,13 @@ public class Player : MonoBehaviour
     private enum WeaponType { MainGun, ChargeGun }
     private WeaponType currentWeapon = WeaponType.MainGun;
 
+    // DODGE UI
+    [SerializeField] private UnityEngine.UI.Image dodgeCooldownImage; 
+    private float dodgeCooldownTimer = 0f;
+
     // Dodge implementation
     public float dodgeDuration = 0.5f;
-    public float dodgeCooldown = 3f;
+    public float dodgeCooldown = 5f;
     private bool isDodging = false;
     private bool canDodge = true;
     private SpriteRenderer spriteRenderer;
@@ -82,6 +87,17 @@ public class Player : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha2)) {
             currentWeapon = WeaponType.ChargeGun;
         }
+
+        // cooldown timer implementation
+        if (!canDodge) {
+            dodgeCooldownTimer -= Time.deltaTime;
+            dodgeCooldownImage.fillAmount = 1 - (dodgeCooldownTimer / dodgeCooldown);
+        if (dodgeCooldownTimer <= 0) {
+            canDodge = true;
+            dodgeCooldownTimer = 0;
+            dodgeCooldownImage.fillAmount = 1f; // cooldown is off
+        }
+    }
 
 
         
@@ -201,8 +217,14 @@ public class Player : MonoBehaviour
     }
     
     IEnumerator Dodge() {
+        if (!canDodge) yield break;
+
         isDodging = true;
         canDodge = false;
+        dodgeCooldownTimer = dodgeCooldown;
+        
+        // play dodge sound
+        SoundFXManager.Instance.PlaySoundClip(dodgeStartSound, transform, 0.8f, 1f);
 
         // Disable collisions and turn invincible
         playerCollider.enabled = false;
@@ -229,7 +251,11 @@ public class Player : MonoBehaviour
 
         // Cooldown implementation
         yield return new WaitForSeconds(dodgeCooldown);
+
+        // enable dodging when cooldown over
         canDodge = true;
+        dodgeCooldownTimer = 0f;
+        dodgeCooldownImage.fillAmount = 1f;
     }
 
     // Damage and healing implementation, will be referenced whenever hit or healed
