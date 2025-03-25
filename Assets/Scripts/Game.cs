@@ -22,7 +22,7 @@ public class Game : MonoBehaviour {
     public int winCond;
     private bool hasWon = false;
     private bool gameOver = false;
-    private float curTime = 0.0f;
+    public float curTime = 0.0f;
     private bool paused = false;
     public int kills = 0;
 
@@ -56,7 +56,7 @@ public class Game : MonoBehaviour {
         if(winType == WinType.Time && curTime >= winCond) {
             hasWon = true;
         }
-        if(winType == WinType.Waves && Instance.GetComponent<CombatDirector>().waveNumber >= winCond) {
+        if(winType == WinType.Waves && Instance.GetComponent<CombatDirector>().waveNumber >= winCond + 1) {
             hasWon = true;
         }
         if(winType == WinType.Kills && kills >= winCond)
