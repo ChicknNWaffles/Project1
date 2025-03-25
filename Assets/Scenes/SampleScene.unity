@@ -494,7 +494,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
-<<<<<<< HEAD
 --- !u!1 &497436633
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,8 +660,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 507362332}
   m_CullTransparentMesh: 1
-=======
->>>>>>> parent of 1b3be86 (Fixed Merge Conflict!!!)
 --- !u!114 &582742802 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 925069744113527159, guid: ae60654f504aed949b2d4cd51ed06182, type: 3}
@@ -1541,19 +1538,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ea7cc31e281c04ab0119ef8a90c51d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-=======
---- !u!1 &1786864237 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 725017104364724285, guid: 15aa4e966d665bc43a4e5b0dadf7d8f8, type: 3}
-  m_PrefabInstance: {fileID: 553086475300396478}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &1786864238 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8167508852434523711, guid: 15aa4e966d665bc43a4e5b0dadf7d8f8, type: 3}
-  m_PrefabInstance: {fileID: 553086475300396478}
-  m_PrefabAsset: {fileID: 0}
->>>>>>> parent of 1b3be86 (Fixed Merge Conflict!!!)
 --- !u!1 &1904527843 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6182333211121395224, guid: 8cf38c082a10c874ba717f31c5f0a22b, type: 3}
@@ -1977,7 +1961,6 @@ PrefabInstance:
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: gameOverScreen
       value: 
-<<<<<<< HEAD
       objectReference: {fileID: 0}
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: objectiveStatement
@@ -1987,9 +1970,6 @@ PrefabInstance:
       propertyPath: objectiveStatementObj
       value: 
       objectReference: {fileID: 507362334}
-=======
-      objectReference: {fileID: 1786864237}
->>>>>>> parent of 1b3be86 (Fixed Merge Conflict!!!)
     - target: {fileID: 5763122565646761129, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: m_Name
       value: Game
