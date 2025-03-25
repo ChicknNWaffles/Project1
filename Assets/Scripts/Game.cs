@@ -34,6 +34,8 @@ public class Game : MonoBehaviour {
         Input = new ShooterControls();
         Input.Enable();
         SceneManager.activeSceneChanged += disableInput;
+        Time.timeScale = 1f;
+        gameOverScreen.SetActive(false);
 
     }
 
@@ -91,14 +93,18 @@ public class Game : MonoBehaviour {
 
     }
 
-    public void GameOver()
-    {
+    // game over bounces in
+    public void GameOver() {
 
         Time.timeScale = 0f;
         gameOverScreen.SetActive(true);
+        RectTransform gameOverTransform = gameOverScreen.GetComponent<RectTransform>();
+        gameOverTransform.anchoredPosition = new Vector3(0, 1000, 0);
+        LeanTween.moveY(gameOverTransform, 0, 1f).setEaseOutBounce().setIgnoreTimeScale(true); 
 
     }
 
+    
     private void OnPause() {
 
         togglePause();
