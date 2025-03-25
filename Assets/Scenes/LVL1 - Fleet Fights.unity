@@ -228,6 +228,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6975198562764241424, guid: e8a2a207eaeda66449a011774611b3c7, type: 3}
   m_PrefabInstance: {fileID: 77393125}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &77393127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 468753766450698587, guid: e8a2a207eaeda66449a011774611b3c7, type: 3}
+  m_PrefabInstance: {fileID: 77393125}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &130637675 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 512902025919041050, guid: c6212db15dc25d149b3f81daee5cc364, type: 3}
@@ -1365,12 +1370,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: nextLevel
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: pauseMenu
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 77393127}
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: gameOverScreen
       value: 
