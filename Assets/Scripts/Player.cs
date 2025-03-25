@@ -299,7 +299,18 @@ public class Player : MonoBehaviour
                 }
             }
         }else if (collision.CompareTag("Enemy")){
-            TakeDamage(10);
+            if(collision.gameObject.GetComponent<Enemy>().type == Enemy.Type.Asteroid)
+            {
+                TakeDamage(10);
+            }
+            else if (collision.gameObject.GetComponent<Enemy>().type == Enemy.Type.Station)
+            {
+                TakeDamage(100);
+            }
+            else
+            {
+                TakeDamage(5);
+            }
         }
     }
     
