@@ -56,7 +56,7 @@ public class ScoreSystem : MonoBehaviour
         UpdateMultBar();
 
         // reset pitch of sfx
-        SoundFXManager.Instance.PlaySoundClip(multiplierSound, transform, 0.3f, 1.0f);
+        SoundFXManager.Instance.PlaySoundClip(multiplierSound, transform, 0.05f, 1.0f);
 
     }
     // Use this to increase the score in other scripts
