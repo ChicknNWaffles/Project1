@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Game : MonoBehaviour {
     public enum WinType { 
@@ -27,6 +28,13 @@ public class Game : MonoBehaviour {
     private bool paused = false;
     public int kills = 0;
     public int nextLevel; // the scene build number for the next level
+    public TextMeshProUGUI objectiveStatementObj;
+    public string objectiveStatement;
+    private char[] msgArray;
+    private int msgLetterIndex = 0;
+    private bool msgUp = false;
+    public float msgTimer = 5.0f;
+    private int indexToReplace = 0;
 
     // Start is called before the first frame update
     void Start() {
@@ -35,7 +43,7 @@ public class Game : MonoBehaviour {
         Input = new ShooterControls();
         Input.Enable();
         SceneManager.activeSceneChanged += disableInput;
-
+        msgArray = objectiveStatement.ToCharArray();
     }
 
     // Update is called once per frame
@@ -53,6 +61,26 @@ public class Game : MonoBehaviour {
 
         if (!paused) {
             curTime += Time.deltaTime;
+
+            if (msgLetterIndex < msgArray.Length){
+                appendObjectiveText(msgArray[msgLetterIndex].ToString());
+                msgLetterIndex++;
+            } else{
+                msgUp = true;
+            }
+            if (msgUp) {
+                msgTimer -= Time.deltaTime;
+            }
+            if(msgTimer < 0) {
+                if(indexToReplace < objectiveStatement.Length) {
+                    partEraseObjectiveText(indexToReplace);
+                    indexToReplace++;
+                } else{
+                    clearObjectiveText();
+                    msgTimer = 1f;
+                }
+            }
+
         }
 
         if(winType == WinType.Time && curTime >= winCond) {
@@ -72,6 +100,38 @@ public class Game : MonoBehaviour {
             SceneManager.LoadScene(nextLevel);
         }
 
+    }
+
+    void setObjectiveText(string msg) {
+        objectiveStatementObj.text = msg;
+    }
+
+    void appendObjectiveText(string msg) {
+        setObjectiveText(objectiveStatementObj.text + msg);
+    }
+
+    // replaces the first character in the objective notification text with a space
+    // used for slow erasing
+    void partEraseObjectiveText(int i) {
+        //takes the current text, converts it to a list of characters, leaving off the first few characters,
+        // then converts it back to a string and prepends a number of spaces equal to the number of characters
+        // removed.
+        setObjectiveText(eraseStep(i, objectiveStatement));
+    }
+
+    string eraseStep(int i, string msg)
+    {
+        if(i > 0) {
+            var msgWithoutFirst = string.Concat(msg.ToCharArray(1, msg.Length - 1));
+            return " " + eraseStep(i - 1, msgWithoutFirst);
+        }
+        else {
+            return msg;
+        }
+    }
+
+    void clearObjectiveText() {
+        objectiveStatementObj.text = "";
     }
 
     private void disableInput() {
