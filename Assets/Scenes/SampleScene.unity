@@ -486,7 +486,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2038391470}
-  - {fileID: 945020208}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -584,8 +583,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e97248adcf9c7a048a8e5af41ea9efd1, type: 2}
+  m_sharedMaterial: {fileID: -154209767157270767, guid: e97248adcf9c7a048a8e5af41ea9efd1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -814,12 +813,16 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 445086614}
+    m_TransformParent: {fileID: 2038391470}
     m_Modifications:
     - target: {fileID: 725017104364724285, guid: 15aa4e966d665bc43a4e5b0dadf7d8f8, type: 3}
       propertyPath: m_Name
       value: GameOverScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 6734458493223773642, guid: 15aa4e966d665bc43a4e5b0dadf7d8f8, type: 3}
+      propertyPath: fadeImage
+      value: 
+      objectReference: {fileID: 1348658386}
     - target: {fileID: 8167508852434523711, guid: 15aa4e966d665bc43a4e5b0dadf7d8f8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -870,15 +873,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8167508852434523711, guid: 15aa4e966d665bc43a4e5b0dadf7d8f8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8167508852434523711, guid: 15aa4e966d665bc43a4e5b0dadf7d8f8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8167508852434523711, guid: 15aa4e966d665bc43a4e5b0dadf7d8f8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8167508852434523711, guid: 15aa4e966d665bc43a4e5b0dadf7d8f8, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1338,11 +1341,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1266409284}
   m_CullTransparentMesh: 1
---- !u!212 &1355193385 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 5685207286111834346, guid: caba1a25fe661ae48abb5714fd7872bf, type: 3}
-  m_PrefabInstance: {fileID: 3339591397765934511}
+--- !u!114 &1348658386 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 674031446197146415, guid: 15aa4e966d665bc43a4e5b0dadf7d8f8, type: 3}
+  m_PrefabInstance: {fileID: 945020207}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1441962015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,6 +1542,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ea7cc31e281c04ab0119ef8a90c51d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1765344186 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 725017104364724285, guid: 15aa4e966d665bc43a4e5b0dadf7d8f8, type: 3}
+  m_PrefabInstance: {fileID: 945020207}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1904527843 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6182333211121395224, guid: 8cf38c082a10c874ba717f31c5f0a22b, type: 3}
@@ -1762,6 +1776,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1612772908}
+  - {fileID: 945020208}
   m_Father: {fileID: 445086614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1936,7 +1951,7 @@ PrefabInstance:
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1355193385}
+      objectReference: {fileID: 2027885566163733609, guid: 49c2fa15f4f74034c9782fa42e770c70, type: 3}
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: winCond
       value: 40
@@ -1956,7 +1971,7 @@ PrefabInstance:
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: gameOverScreen
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1765344186}
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: objectiveStatement
       value: Objective is this

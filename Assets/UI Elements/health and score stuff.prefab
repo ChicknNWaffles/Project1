@@ -451,6 +451,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -154209767157270767, guid: e97248adcf9c7a048a8e5af41ea9efd1, type: 2}
+    - target: {fileID: 1544856166413312831, guid: b2ab67dd4c3408c4baa0257c75489156, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
     - target: {fileID: 5269153963677954147, guid: b2ab67dd4c3408c4baa0257c75489156, type: 3}
       propertyPath: MultText
       value: 
