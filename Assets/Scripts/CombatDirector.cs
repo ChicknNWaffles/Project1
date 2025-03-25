@@ -38,10 +38,9 @@ public class CombatDirector : MonoBehaviour
     public float spawnTimer = 3; // seconds it waits until the next "wave" is spawned
 
     // private variables
-
     private float x;    private float y;
-    private Vector3 spawnPoint;
-    private Vector3 spawnOffset; // a temporary variable that stores where enemies are spawned in relation to the spawnpoint
+    private Vector3 spawnPoint; // a temporary variable that selects the centerpoint for a wave to spawn in
+    private Vector3 spawnOffset; // a temporary variable that stores where individual enemies are spawned in relation to the spawnpoint
     private List<string> enabled = new List<string>(); // a list that will store the enabled enemy types
 
 
@@ -61,7 +60,7 @@ public class CombatDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!HALT)
+        if (!HALT) // the game should only spawn in enemies when the Combat Director is enabled. HALT stops the enemy spawns.
         {
             // make sure the Heat isn't above 3 or below 0
             if (heatLevel > 3) { heatLevel = 3; }
