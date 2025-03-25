@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Controls.unity
     guid: a57f22392f8c7ea4c93fa91b5ca91288
   - enabled: 1
-    path: Assets/Scenes/LVL0 - ENDLESS.unity
+    path: Assets/Scenes/LVL5 - Boss time.unity
     guid: 40da141244a2cb04a9f5a7b7bed90bdf
   - enabled: 1
     path: Assets/Scenes/LVL1 - Fleet Fights.unity
