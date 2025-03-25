@@ -7,7 +7,8 @@ public class Game : MonoBehaviour {
     public enum WinType { 
         Time,
         Waves,
-        Kills
+        Kills,
+        Endless
     }
 
     public static ShooterControls Input { get; private set; }
