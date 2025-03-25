@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour {
+    public enum WinType { 
+        Time,
+        Waves,
+        Kills
+    }
+
     public static ShooterControls Input { get; private set; }
     public static Game Instance { get; private set; }
     public GameObject playerObj;
@@ -12,7 +18,14 @@ public class Game : MonoBehaviour {
     public SpriteRenderer player;
     public SpriteRenderer mainBullet;
     public Camera camera;
+    public WinType winType;
+    public int winCond;
+    private bool hasWon = false;
     private bool gameOver = false;
+    public float curTime = 0.0f;
+    private bool paused = false;
+    public int kills = 0;
+    public int nextLevel; // the scene build number for the next level
 
     // Start is called before the first frame update
     void Start() {
@@ -35,6 +48,27 @@ public class Game : MonoBehaviour {
 
             GameOver();
 
+        }
+
+        if (!paused) {
+            curTime += Time.deltaTime;
+        }
+
+        if(winType == WinType.Time && curTime >= winCond) {
+            hasWon = true;
+        }
+        if(winType == WinType.Waves && Instance.GetComponent<CombatDirector>().waveNumber >= winCond + 1) {
+            hasWon = true;
+        }
+        if(winType == WinType.Kills && kills >= winCond)
+        {
+            hasWon = true;
+        }
+
+        if (hasWon)
+        {
+            print("You Won!");
+            SceneManager.LoadScene(nextLevel);
         }
 
     }
@@ -76,6 +110,7 @@ public class Game : MonoBehaviour {
 
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
+            paused = false;
             return (false);
 
         }
@@ -83,6 +118,7 @@ public class Game : MonoBehaviour {
 
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
+            paused = true;
             return (true);
 
         }
