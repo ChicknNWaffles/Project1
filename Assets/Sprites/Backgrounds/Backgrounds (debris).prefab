@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2655130512327675773}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -266.44992, y: -150.92, z: 3.0135891}
+  m_LocalPosition: {x: -958.23, y: -539.93, z: 3.0135891}
   m_LocalScale: {x: 1.114, y: 1.0984, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: 0.2
   backgroundWidth: 10
-  pulseColor: {r: 0.8, g: 0.6, b: 1, a: 1}
+  pulseColor: {r: 0.44313726, g: 0.74509805, b: 0.38431373, a: 1}
   pulseSpeed: 1
 --- !u!1 &6735465733465132727
 GameObject:
@@ -189,7 +189,7 @@ Transform:
   m_GameObject: {fileID: 7994333646388079154}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -245.12, y: -150.92, z: 3.0135891}
+  m_LocalPosition: {x: -936.9, y: -539.93, z: 3.0135891}
   m_LocalScale: {x: 1.114, y: 1.0984, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -261,5 +261,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: 0.2
   backgroundWidth: 10
-  pulseColor: {r: 0.8, g: 0.6, b: 1, a: 1}
+  pulseColor: {r: 0.44247842, g: 0.745283, b: 0.38318795, a: 1}
   pulseSpeed: 1
