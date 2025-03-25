@@ -305,7 +305,7 @@ public class Player : MonoBehaviour
             }
             else if (collision.gameObject.GetComponent<Enemy>().type == Enemy.Type.Station)
             {
-                TakeDamage(100);
+                TakeDamage(20);
             }
             else
             {
