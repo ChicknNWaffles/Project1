@@ -20,7 +20,9 @@ public class CombatDirector : MonoBehaviour
     public GameObject FLBackPrefab;
     public GameObject FLMovingPrefab;
     public GameObject stationPrefab;
-    public GameObject asteroidPrefab;
+    public GameObject asteroidPrefab1;
+    public GameObject asteroidPrefab2;
+    public GameObject asteroidPrefab3;
 
     /* depending on level difficulty, some enemies will spawn in more difficult patterns, or larger waves
      * 
@@ -314,7 +316,19 @@ public class CombatDirector : MonoBehaviour
             float y = Random.Range(-4.2f, 4.2f);
 
             // spawn an asteroid at that coordinate
-            SpawnAnEnemy(asteroidPrefab, x, y);
+            int asteroidType = Random.Range(1, 4);
+            if (asteroidType == 1)
+            {
+                SpawnAnEnemy(asteroidPrefab1, x, y);
+            }
+            else if (asteroidType == 2)
+            {
+                SpawnAnEnemy(asteroidPrefab2, x, y);
+            }
+            else
+            {
+                SpawnAnEnemy(asteroidPrefab3, x, y);
+            }
         }
 
     }

@@ -51,6 +51,11 @@ MonoBehaviour:
   player: {fileID: 0}
   mainBullet: {fileID: 0}
   camera: {fileID: 0}
+  winType: 0
+  winCond: 0
+  curTime: 0
+  kills: 0
+  nextLevel: 0
 --- !u!114 &4374594497134928838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,5 +81,9 @@ MonoBehaviour:
   FLBackPrefab: {fileID: 3225700629000772840, guid: bd44d50e971107449b8b1a81b749c824, type: 3}
   FLMovingPrefab: {fileID: 796712329534143192, guid: 8b0a0b3fcbb62214e95b6a3b4a8feaa5, type: 3}
   stationPrefab: {fileID: 4364901357152226849, guid: a3f797fca30fe3449ac12d5cf2025f25, type: 3}
-  asteroidPrefab: {fileID: 1615481577552751122, guid: 7da67b55c29f2d74cba78e1369a20674, type: 3}
+  asteroidPrefab: {fileID: 5437204568221073356, guid: 644c8d66e10547c42b1a9800256b4c72, type: 3}
   heatLevel: 0
+  waveNumber: 0
+  spawnTimer: 3
+  HALT: 0
+  linkWithScore: 0
