@@ -30,12 +30,10 @@ public class CombatDirector : MonoBehaviour
      * 3 = hard (most enemies have special spawn characteristics)
      */
     public int heatLevel = 0;
-
-    // count the number of waves that have been spawned
-    public int waveNumber = 0;
-    // HALT the combat director
-    public bool HALT = false;
+    public int waveNumber = 0; // count the number of waves that have been spawned
     public float spawnTimer = 3; // seconds it waits until the next "wave" is spawned
+    public bool HALT = false; // HALT the combat director
+    public bool linkWithScore = false; // if this is true, then the score will affect the heat meter
 
     // private variables
     private float x;    private float y;
@@ -47,14 +45,7 @@ public class CombatDirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // for each enabled enemy type, add the type to the list, so it can be randomly selected from.
-        if (cruiser) { enabled.Add("cruiser"); }
-        if (fighterFormationStationary) { enabled.Add("ffStationary"); }
-        if (fighterFormationHorizontal) { enabled.Add("ffHorizontal"); }
-        if (fighterLoneBack) { enabled.Add("flBack"); }
-        if (fighterLoneMoving) { enabled.Add("flMoving"); }
-        if (station) { enabled.Add("station"); }
-        if (asteroid) { enabled.Add("asteroid"); }
+        
     }
 
     // Update is called once per frame
@@ -62,6 +53,9 @@ public class CombatDirector : MonoBehaviour
     {
         if (!HALT) // the game should only spawn in enemies when the Combat Director is enabled. HALT stops the enemy spawns.
         {
+            // check what enemies have spawns enabled
+            checkEnabledEnemies();
+
             // make sure the Heat isn't above 3 or below 0
             if (heatLevel > 3) { heatLevel = 3; }
             if (heatLevel < 0) { heatLevel = 0; }
@@ -324,6 +318,24 @@ public class CombatDirector : MonoBehaviour
         }
 
     }
+
+    void checkEnabledEnemies()
+    {
+        // for each enabled enemy type, add the type to the list, so it can be randomly selected from.
+        if (cruiser) { enabled.Add("cruiser"); }
+        if (fighterFormationStationary) { enabled.Add("ffStationary"); }
+        if (fighterFormationHorizontal) { enabled.Add("ffHorizontal"); }
+        if (fighterLoneBack) { enabled.Add("flBack"); }
+        if (fighterLoneMoving) { enabled.Add("flMoving"); }
+        if (station) { enabled.Add("station"); }
+        if (asteroid) { enabled.Add("asteroid"); }
+    }
+
+    void updateScore()
+    {
+
+    }
+
 }
 
 /*
