@@ -99,8 +99,8 @@ public class Enemy : MonoBehaviour
                 enemyScoreValue = 25;
                 break;
             case Type.Asteroid:
-                enemyMaxHealth = 5;
-                enemyScoreValue = 3;
+                enemyMaxHealth = 2;
+                enemyScoreValue = 2;
                 break;
             default:
                 enemyMaxHealth = 3;

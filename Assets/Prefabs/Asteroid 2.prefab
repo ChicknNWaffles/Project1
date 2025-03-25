@@ -18,7 +18,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4877148505845150358, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
       propertyPath: m_Name
-      value: Asteroid 2 Variant
+      value: Asteroid 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877148505845150358, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7228782696520288269, guid: 91f080bac20f6d14d8392ac24b0dcec0, type: 3}
       propertyPath: m_LocalPosition.x
