@@ -116,6 +116,7 @@ public class CombatDirector : MonoBehaviour
         spawnOffset.x = x; spawnOffset.y = y;
         GameObject temp = Instantiate(prefab);
         temp.transform.position = spawnOffset;
+        temp.tag = prefab.tag;
         spawnOffset.x = spawnOffset.x - 5f;
         temp.GetComponent<Enemy>().origin = spawnOffset;
     }
