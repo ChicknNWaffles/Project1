@@ -25,6 +25,7 @@ public class Game : MonoBehaviour {
     public float curTime = 0.0f;
     private bool paused = false;
     public int kills = 0;
+    public int nextLevel; // the scene build number for the next level
 
     // Start is called before the first frame update
     void Start() {
@@ -67,7 +68,7 @@ public class Game : MonoBehaviour {
         if (hasWon)
         {
             print("You Won!");
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(nextLevel);
         }
 
     }
