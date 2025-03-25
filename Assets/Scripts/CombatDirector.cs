@@ -30,12 +30,16 @@ public class CombatDirector : MonoBehaviour
      * 1 = easy (only a couple of special spawn characteristics)
      * 2 = moderate (some special spawn characteristics)
      * 3 = hard (most enemies have special spawn characteristics)
+     * 
+     * Right now, Heat only exists up until level 3. Any larger Heat has no effect on spawning.
      */
-    public int heatLevel = 0;
+    public int heatLevel = 0; public int maxHeatLevel = 3;
     public int waveNumber = 0; // count the number of waves that have been spawned
+    public int waveGoal = 0; // if the wave goal is met, then the Heat is incremented
+    public bool linkWithWave = false; // if this is true, then the score will affect the heat meter
     public float spawnTimer = 3; // seconds it waits until the next "wave" is spawned
     public bool HALT = false; // HALT the combat director
-    public bool linkWithScore = false; // if this is true, then the score will affect the heat meter
+    
 
     // private variables
     private float x;    private float y;
@@ -58,15 +62,17 @@ public class CombatDirector : MonoBehaviour
             // check what enemies have spawns enabled
             checkEnabledEnemies();
 
-            // make sure the Heat isn't above 3 or below 0
-            if (heatLevel > 3) { heatLevel = 3; }
-            if (heatLevel < 0) { heatLevel = 0; }
-
             spawnTimer -= Time.deltaTime;
             // wait for a timer to reach zero. When that timer is zero, spawn a valid enemy (or wave of enemies)
             // at a random coordinate
             if (spawnTimer < 0)
             {
+                // The wave number should increase before the enemies are spawned. This gives the game script
+                // a brief chance to check to see if the player won before the enemies are spawned.
+                // if the waves increase the Heat as the game progresses, then check to see if the Heat will raise for next wave
+                if (linkWithWave) { turnUpTheHeat(); }
+                // increment the wave number
+                waveNumber += 1;
 
                 // choose which valid enemy to spawn
 
@@ -96,7 +102,7 @@ public class CombatDirector : MonoBehaviour
                         SpawnAsteroidWave();
                         break;
                     default:
-                        // don't spawn anything.
+                        // if we didn't spawn anything, then the wave number doesn't need to go up. Decrement it.
                         waveNumber -= 1;
                         break;
                 }
@@ -104,8 +110,7 @@ public class CombatDirector : MonoBehaviour
 
                 // set a new stall timer depending on the "weight" of the enemies spawned, and the "Heat" of the game
                 spawnTimer = 2 + (int)(heatLevel * 1.5);
-                // increment the wave number
-                waveNumber += 1;
+                
             }
         }
         else { ; }
@@ -292,7 +297,7 @@ public class CombatDirector : MonoBehaviour
 
         // stations should spawn in random clusters that increase in size along with the Heat.
         // 7 stations are spawned at Heat 3, and two less are spawned as the Heat goes down.
-        for (int i = heatLevel; i >= 0; i--)
+        for (int i = heatLevel/2; i >= 0; i--)
         {
             // pick a random x coordinate between 12 and 15
             float x = Random.Range(12f, 15f);
@@ -346,9 +351,18 @@ public class CombatDirector : MonoBehaviour
         if (asteroid) { enabled.Add("asteroid"); }
     }
 
-    void updateScore()
+    // function to increase the heat value by a set integer. By default, raises by 1, but you can also "turn down the heat"
+    // by putting in a negative number.
+    void turnUpTheHeat(int value = 1)
     {
-
+        // if the next wave is the goal wave for the Heat to be raised
+        if((waveNumber+1)/waveGoal > waveNumber/waveGoal)
+        {
+            heatLevel += value; // then raise the heat
+            // stop the Heat from raising over the maximum
+            if (heatLevel > maxHeatLevel) { heatLevel = maxHeatLevel; }
+            else if (heatLevel < 0) { heatLevel = 0; }
+        }
     }
 
 }
