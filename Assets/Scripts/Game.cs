@@ -22,7 +22,7 @@ public class Game : MonoBehaviour {
     public int winCond;
     private bool hasWon = false;
     private bool gameOver = false;
-    private int curTime = 0;
+    private float curTime = 0.0f;
     private bool paused = false;
     public int kills = 0;
 
@@ -62,6 +62,11 @@ public class Game : MonoBehaviour {
         if(winType == WinType.Kills && kills >= winCond)
         {
             hasWon = true;
+        }
+
+        if (hasWon)
+        {
+            print("You Won!");
         }
 
     }
