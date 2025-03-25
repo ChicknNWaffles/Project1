@@ -47,7 +47,7 @@ public class ScoreSystem : MonoBehaviour
         // sound effect on mult increase, increases pitch over time
         float pitch = Mathf.Clamp(1.0f + (currentMult * 0.015f), 1.0f, 2.0f);
 
-        SoundFXManager.Instance.PlaySoundClip(multiplierSound, transform, 0.8f, pitch);
+        SoundFXManager.Instance.PlaySoundClip(multiplierSound, transform, 0.9f, pitch);
     }
 
     // Resets the mult, when the player gets hit
@@ -56,7 +56,7 @@ public class ScoreSystem : MonoBehaviour
         UpdateMultBar();
 
         // reset pitch of sfx
-        SoundFXManager.Instance.PlaySoundClip(multiplierSound, transform, 0.04f, 1.0f);
+        SoundFXManager.Instance.PlaySoundClip(multiplierSound, transform, 0.05f, 1.0f);
 
     }
     // Use this to increase the score in other scripts
