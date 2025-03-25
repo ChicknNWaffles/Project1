@@ -9,14 +9,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AudioClip damage_sound;
 
     // Public fields
-    public enum Type
-    {
+    public enum Type {
         MovingFighter,
         FormationFighterMoving,
         FormationFighterStationary,
         BackFighter,
         BattleCruiser,
         Station,
+        //BossStation,
         Asteroid
     }
     public GameObject enemyBulletPrefab;
@@ -50,8 +50,7 @@ public class Enemy : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         curTurnLikelihood = turnLikelihood;
         direction = Vector3.left;
         pathTimer = 0.5f;
@@ -62,24 +61,20 @@ public class Enemy : MonoBehaviour
 
         // health handling
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        if (spriteRenderer == null)
-        {
-            Debug.LogWarning(gameObject.name + " has no SpriteRenderer");
+        if (spriteRenderer == null) {
+        Debug.LogWarning(gameObject.name + " has no SpriteRenderer");
         }
 
         healthSystem = GetComponent<HealthSystem>();
-        if (healthSystem != null)
-        {
+        if (healthSystem != null) {
             healthSystem.SetHealth(enemyMaxHealth);
         }
-        else
-        {
+        else {
             Debug.LogError("HealthSytem not set for this enemy");
         }
 
         // setting the enemy scores based on type
-        switch (type)
-        {
+        switch (type) {
             case Type.MovingFighter:
                 enemyMaxHealth = 2;
                 enemyScoreValue = 5;
@@ -108,6 +103,9 @@ public class Enemy : MonoBehaviour
                 enemyMaxHealth = 2;
                 enemyScoreValue = 2;
                 break;
+            /*case Type.BossStation:
+                enemyMaxHealth = 300;
+                enemyScoreValue = 5000;*/
             default:
                 enemyMaxHealth = 3;
                 enemyScoreValue = 1;
@@ -118,16 +116,12 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (transform.position == origin)
-        {
-            if (path == null && type == Type.MovingFighter)
-            {
+    void Update() {
+        if(transform.position == origin){
+            if (path == null && type == Type.MovingFighter) {
                 path = new Vector3[6];
                 // generate 5 coordinates
-                for (var i = 0; i < 5; i++)
-                {
+                for (var i = 0; i < 5; i++){
                     // generate x
                     var x = Random.Range(-5.5f, 8.0f);
                     // generate y
@@ -144,16 +138,13 @@ public class Enemy : MonoBehaviour
             }
 
             readyToStart = true;
-        }
-        else if (!readyToStart)
-        {
+        }else if (!readyToStart){
             target = origin;
         }
 
 
         pathTimer -= Time.deltaTime;
-        if (pathTimer < 0 && readyToStart)
-        {
+        if (pathTimer < 0 && readyToStart) {
             pathfind();
             pathTimer = 0.5f;
         }
@@ -162,13 +153,26 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
 
         // shooting
-        if (readyToStart)
-        {
-            if (type != Type.Asteroid)
-            {
+        if (readyToStart) {
+            if (type != Type.Asteroid) {
                 shootTimer -= Time.deltaTime;
-                if (shootTimer < 0)
-                {
+                if (shootTimer < 0) {
+                    /*if (type == Type.Station)
+                    {
+                        
+                        ////var playerPos = Game.Instance.playerObj.transform.position;
+                        //var playerPos = transform.position;
+                        ////var curPos = transform.position;
+                        ////var direction = playerPos - curPos;
+                        ////var playerPos = transform.position;
+                        vector3 playerPos = Game.Instance.playerObj.transform.position;
+                        vector3 curPos = transform.position;
+                        vector3 direction;
+                        direction.x = playerPos.x - curPos.x; direction.y = playerPos.y - curPos.y;
+                        Shoot(direction);
+                        shootTimer = Random.Range(1.0f, 2.5f);
+                    }
+                    else */
                     if (type == Type.Station)
                     {
                         var playerPos = Game.Instance.playerObj.transform.position;
@@ -176,24 +180,19 @@ public class Enemy : MonoBehaviour
                         var curPos = transform.position;
                         var direction = playerPos - curPos;
                         Shoot(direction);
-                        shootTimer = Random.Range(1.0f, 2.5f);
+                        shootTimer = Random.Range(1.5f, 2.5f);
+                        inBurst = 5;
                     }
-                    else if (type == Type.BattleCruiser)
-                    {
+                    } else if (type == Type.BattleCruiser) {
                         Shoot();
-                        if (inBurst == 0)
-                        {
+                        if (inBurst == 0) {
                             shootTimer = Random.Range(2.5f, 4.0f);
                             inBurst = 5;
-                        }
-                        else
-                        {
+                        } else {
                             shootTimer = 0.2f;
                             inBurst -= 1;
                         }
-                    }
-                    else
-                    {
+                    } else {
                         Shoot();
                         shootTimer = Random.Range(1.0f, 2.5f);
                     }
@@ -202,8 +201,7 @@ public class Enemy : MonoBehaviour
         }
 
         // Despawn if offscreen
-        if (transform.position.x < -9.5)
-        {
+        if(transform.position.x < -9.5) {
             print("Despawned enemy");
             Destroy(gameObject);
         }
@@ -211,106 +209,71 @@ public class Enemy : MonoBehaviour
     }
 
     // handles enemy pathfinding differently depending on enemy type
-    void pathfind()
-    {
-        if (type == Type.MovingFighter)
-        {
-            if (target == transform.position)
-            {
+    void pathfind() {
+        if (type == Type.MovingFighter) {
+            if (target == transform.position) {
                 target = path[at];
-                if (at == 5)
-                {
+                if (at == 5) {
                     at = 0;
-                }
-                else
-                {
+                } else {
                     at++;
                 }
             }
-        }
-        else if (type == Type.FormationFighterMoving || type == Type.Station || type == Type.Asteroid)
-        {
+        } else if (type == Type.FormationFighterMoving || type == Type.Station || type == Type.Asteroid) {
             target = transform.position + (Vector3.left * moveSpeed);
-        }
-        else if (type == Type.BackFighter)
-        {
+        } else if (type == Type.BackFighter) {
             // if this is the first time setting the target, pick
             // a random direction. Else, decide whether or not
             // to turn around.
-            if (direction == Vector3.left)
-            {
-                if (Random.value >= 0.5f)
-                {
+            if (direction == Vector3.left) {
+                if (Random.value >= 0.5f) {
                     direction = Vector3.up;
-                }
-                else
-                {
+                } else {
                     direction = Vector3.down;
                 }
-            }
-            else
-            {
-                if (Random.value <= curTurnLikelihood)
-                {
-                    if (direction == Vector3.up)
-                    {
+            } else {
+                if (Random.value <= curTurnLikelihood) {
+                    if (direction == Vector3.up) {
                         direction = Vector3.down;
-                    }
-                    else
-                    {
+                    } else {
                         direction = Vector3.up;
                     }
                 }
             }
             target = transform.position + (direction * moveSpeed);
-        }
-        else
-        {
+        } else {
             target = transform.position;
         }
     }
 
     // Detects when the enemy collides with another object
     // or collider
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.name.Equals("Top") || collision.name.Equals("Bottom"))
-        {
-            if (collision.transform.parent.gameObject.name.Equals("OffscreenHitbox"))
-            {
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.name.Equals("Top") || collision.name.Equals("Bottom")) {
+            if (collision.transform.parent.gameObject.name.Equals("OffscreenHitbox")) {
                 curTurnLikelihood = 1.0f;
-            }
-            else if (collision.transform.parent.gameObject.name.Equals("TurnSoon-High"))
-            {
+            } else if (collision.transform.parent.gameObject.name.Equals("TurnSoon-High")) {
                 curTurnLikelihood = turnLikelihood + 7 * ((1.0f - turnLikelihood) / 12);
-            }
-            else if (collision.transform.parent.gameObject.name.Equals("TurnSoon-Low"))
-            {
+            } else if (collision.transform.parent.gameObject.name.Equals("TurnSoon-Low")) {
                 curTurnLikelihood = turnLikelihood + 3 * ((1.0f - turnLikelihood) / 12);
-            }
-            else if (collision.transform.parent.gameObject.name.Equals("NormalTurn"))
-            {
+            } else if (collision.transform.parent.gameObject.name.Equals("NormalTurn")) {
                 curTurnLikelihood = turnLikelihood;
             }
         }
     }
-
+    
     // Links with the health system to take damage
-    public void TakeDamage(int damage)
-    {
+    public void TakeDamage(int damage) {
         SoundFXManager.Instance.PlaySoundClip(damage_sound, transform, 0.4f, 1f);
         healthSystem.LoseHealth(damage);
-        if (healthSystem.GetHealth() <= 0)
-        {
+        if (healthSystem.GetHealth() <= 0) {
             Die();
         }
     }
-
+    
     // kill and increase the score by the enemies score value
-    private void Die()
-    {
-        if (ScoreSystem.Instance != null)
-        {
+    private void Die() {
+        if (ScoreSystem.Instance != null) {
             ScoreSystem.Instance.ScoreIncrease(enemyScoreValue);
             ScoreSystem.Instance.MultIncrease();
         }
@@ -319,13 +282,11 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void Shoot()
-    {
+    private void Shoot() {
         Shoot(Vector3.left);
     }
 
-    private void Shoot(Vector3 direction)
-    {
+    private void Shoot(Vector3 direction) {
         var firepoint = transform;
         GameObject bullet = Instantiate(enemyBulletPrefab, firepoint.position, firepoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
@@ -334,15 +295,13 @@ public class Enemy : MonoBehaviour
 
         EnemyBullet bulletComponent = bullet.GetComponent<EnemyBullet>();
         // assign damage base don enemy type
-        if (type == Type.BattleCruiser)
-        {
+        if (type == Type.BattleCruiser) {
             bulletComponent.damage = 3;
         }
-        else
-        {
+        else {
             bulletComponent.damage = 1;
         }
-
+        
 
     }
 }
