@@ -31,11 +31,16 @@ public class CombatDirector : MonoBehaviour
      */
     public int heatLevel = 0;
 
+    // count the number of waves that have been spawned
+    public int waveNumber = 0;
+    // HALT the combat director
+    public bool HALT = false;
+    public float spawnTimer = 3; // seconds it waits until the next "wave" is spawned
+
     // private variables
-    private float spawnTimer = 3; // seconds it waits until the next "wave" is spawned
     private float x;    private float y;
-    private Vector3 spawnPoint;
-    private Vector3 spawnOffset; // a temporary variable that stores where enemies are spawned in relation to the spawnpoint
+    private Vector3 spawnPoint; // a temporary variable that selects the centerpoint for a wave to spawn in
+    private Vector3 spawnOffset; // a temporary variable that stores where individual enemies are spawned in relation to the spawnpoint
     private List<string> enabled = new List<string>(); // a list that will store the enabled enemy types
 
 
@@ -55,54 +60,59 @@ public class CombatDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // make sure the Heat isn't above 3 or below 0
-        if (heatLevel > 3) { heatLevel = 3; }
-        if (heatLevel < 0) { heatLevel = 0; }
-
-        spawnTimer -= Time.deltaTime;
-        // wait for a timer to reach zero. When that timer is zero, spawn a valid enemy (or wave of enemies)
-        // at a random coordinate
-        if (spawnTimer < 0)
+        if (!HALT) // the game should only spawn in enemies when the Combat Director is enabled. HALT stops the enemy spawns.
         {
+            // make sure the Heat isn't above 3 or below 0
+            if (heatLevel > 3) { heatLevel = 3; }
+            if (heatLevel < 0) { heatLevel = 0; }
 
-            // choose which valid enemy to spawn
-
-            int len = enabled.Count;
-            // spawn the enemy with the correct spawn function
-            switch (enabled[Random.Range(0,len)])
+            spawnTimer -= Time.deltaTime;
+            // wait for a timer to reach zero. When that timer is zero, spawn a valid enemy (or wave of enemies)
+            // at a random coordinate
+            if (spawnTimer < 0)
             {
-                case "cruiser":
-                    SpawnCruiserWave();
-                    break;
-                case "ffStationary":
-                    SpawnFFStationaryWave();
-                    break;
-                case "ffHorizontal":
-                    SpawnFFHorizontalWave();
-                    break;
-                case "flBack":
-                    SpawnFLBackWave();
-                    break;
-                case "flMoving":
-                    SpawnFLMovingWave();
-                    break;
-                case "station":
-                    SpawnStationWave();
-                    break;
-                case "asteroid":
-                    SpawnAsteroidWave();
-                    break;
-                default:
-                    // don't spawn anything.
-                    break;
+
+                // choose which valid enemy to spawn
+
+                int len = enabled.Count;
+                // spawn the enemy with the correct spawn function
+                switch (enabled[Random.Range(0, len)])
+                {
+                    case "cruiser":
+                        SpawnCruiserWave();
+                        break;
+                    case "ffStationary":
+                        SpawnFFStationaryWave();
+                        break;
+                    case "ffHorizontal":
+                        SpawnFFHorizontalWave();
+                        break;
+                    case "flBack":
+                        SpawnFLBackWave();
+                        break;
+                    case "flMoving":
+                        SpawnFLMovingWave();
+                        break;
+                    case "station":
+                        SpawnStationWave();
+                        break;
+                    case "asteroid":
+                        SpawnAsteroidWave();
+                        break;
+                    default:
+                        // don't spawn anything.
+                        waveNumber -= 1;
+                        break;
+                }
+
+
+                // set a new stall timer depending on the "weight" of the enemies spawned, and the "Heat" of the game
+                spawnTimer = 2 + (int)(heatLevel * 1.5);
+                // increment the wave number
+                waveNumber += 1;
             }
-
-
-            // set a new stall timer depending on the "weight" of the enemies spawned, and the "Heat" of the game
-            spawnTimer = 2 + (int)(heatLevel*1.5);
         }
-        
-
+        else { ; }
     }
 
     void SpawnAnEnemy(GameObject prefab, float x, float y)
@@ -110,7 +120,7 @@ public class CombatDirector : MonoBehaviour
         spawnOffset.x = x; spawnOffset.y = y;
         GameObject temp = Instantiate(prefab);
         temp.transform.position = spawnOffset;
-        spawnOffset.x = spawnOffset.x - 5.5f;
+        spawnOffset.x = spawnOffset.x - 5f;
         temp.GetComponent<Enemy>().origin = spawnOffset;
     }
 
@@ -130,8 +140,8 @@ public class CombatDirector : MonoBehaviour
         // when a cruiser is spawned, it may spawn some stationary fighters next to it depending on the Heat level.
         if (heatLevel >= 3)
         {
-            SpawnAnEnemy(FFStationaryPrefab, x + 0, y + 1.5f);
-            SpawnAnEnemy(FFStationaryPrefab, x + 0, y -1.5f);
+            SpawnAnEnemy(FFStationaryPrefab, spawnPoint.x + 0, spawnPoint.y + 1.5f);
+            SpawnAnEnemy(FFStationaryPrefab, spawnPoint.x + 0, spawnPoint.y - 1.5f);
 
             SpawnAnEnemy(cruiserPrefab, spawnPoint.x + 0, spawnPoint.y + 3.5f);
             SpawnAnEnemy(cruiserPrefab, spawnPoint.x + 0, spawnPoint.y - 3.5f);
@@ -302,10 +312,10 @@ public class CombatDirector : MonoBehaviour
 
         // asteroids should spawn in random clusters that increase in size along with the Heat.
         // 7 asteroids are spawned at Heat 3, and two less are spawned as the Heat goes down.
-        for (int i = heatLevel * 2; i >= 0; i--)
+        for (int i = heatLevel * 3; i >= 0; i--)
         {
             // pick a random x coordinate between 12 and 15
-            float x = Random.Range(12f, 15f);
+            float x = Random.Range(12f, 16f);
             // pick a random y coordinate between -4.2 and 4.2
             float y = Random.Range(-4.2f, 4.2f);
 

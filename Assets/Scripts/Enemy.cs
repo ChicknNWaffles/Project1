@@ -57,7 +57,6 @@ public class Enemy : MonoBehaviour
         inBurst = 0;
         target = transform.position;
         at = 0;
-        path = new Vector3[6];
 
         // health handling
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -116,6 +115,7 @@ public class Enemy : MonoBehaviour
     void Update() {
         if(transform.position == origin){
             if (path == null && type == Type.MovingFighter) {
+                path = new Vector3[6];
                 // generate 5 coordinates
                 for (var i = 0; i < 5; i++){
                     // generate x
@@ -144,6 +144,7 @@ public class Enemy : MonoBehaviour
             pathfind();
             pathTimer = 0.5f;
         }
+
         // Moves enemy towards target chosen by pathfinder
         transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
 
@@ -182,10 +183,6 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
 
-    }
-
-    public void originSetter(Vector3 newOrigin){
-        origin = newOrigin;
     }
 
     // handles enemy pathfinding differently depending on enemy type

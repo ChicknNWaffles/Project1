@@ -20,6 +20,8 @@ public class Bullet : MonoBehaviour
             // Rotate around the Z-axis for 2D rotation
             transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
         }
+
+        
     }
     
     void OnTriggerEnter2D(Collider2D collision)
