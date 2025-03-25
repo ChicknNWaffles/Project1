@@ -7,9 +7,9 @@ public class MMenu : MonoBehaviour {
     public SceneTransition sceneTransition;
     public void Play() {
         if (sceneTransition != null) {
-            sceneTransition.StartCoroutine(sceneTransition.FadeLoadScene("LVL 1 - Fleet Fights"));
+            sceneTransition.StartCoroutine(sceneTransition.FadeLoadScene("LVL1 - Fleet Fights"));
         } else {
-            SceneManager.LoadScene("LVL 1 - Fleet Fights");
+            SceneManager.LoadScene("LVL1 - Fleet Fights");
         }
     }
 
@@ -23,9 +23,9 @@ public class MMenu : MonoBehaviour {
 
     public void Endless() {
         if (sceneTransition != null) {
-            sceneTransition.StartCoroutine(sceneTransition.FadeLoadScene("LVL 0 - ENDLESS"));
+            sceneTransition.StartCoroutine(sceneTransition.FadeLoadScene("LVL0 - ENDLESS"));
         } else {
-            SceneManager.LoadScene("LVL 0 - ENDLESS");
+            SceneManager.LoadScene("LVL0 - ENDLESS");
         }
     }
     public void Quit() {
