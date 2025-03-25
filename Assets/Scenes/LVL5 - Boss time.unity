@@ -1734,7 +1734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4374594497134928838, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: heatLevel
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4374594497134928838, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: waveNumber
@@ -1746,7 +1746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4374594497134928838, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: maxHeatLevel
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4374594497134928838, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: asteroidPrefab1
@@ -1808,7 +1808,8 @@ PrefabInstance:
       propertyPath: objectiveStatement
       value: 'Commander Skronk: This is your biggest assignment yet, private! taking
         down this station could turn the tides of the war! This''ll be a hard fight.
-        We''re expecting 99 waves of reinfocements!     note: this is the boss level'
+        Get in, get the kill, and get out before you''re swarmed!     note: this
+        is the boss level'
       objectReference: {fileID: 0}
     - target: {fileID: 5400257198517051468, guid: 2a1f067d1a20ff34d843c779cfeb4e0d, type: 3}
       propertyPath: objectiveStatementObj
