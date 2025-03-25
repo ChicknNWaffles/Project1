@@ -1151,7 +1151,7 @@ ParticleSystem:
     m_BurstCount: 1
     m_Bursts:
     - serializedVersion: 2
-      time: 0.5
+      time: 0
       countCurve:
         serializedVersion: 2
         minMaxState: 0
@@ -1206,7 +1206,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
       cycleCount: 0
-      repeatInterval: 0.5
+      repeatInterval: 0.35
       probability: 1
   SizeModule:
     enabled: 0
