@@ -13,7 +13,7 @@ public class EnemyBullet : MonoBehaviour
 
     void Start()
     {
-        SoundFXManager.Instance.PlaySoundClip(shoot_sound, transform, 1f);
+        SoundFXManager.Instance.PlaySoundClip(shoot_sound, transform, 0.9f, 1f);
 
         // Destroy the bullet after lifetime seconds
         // Destroy(gameObject, lifetime);

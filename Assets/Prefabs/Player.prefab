@@ -129,9 +129,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184d92230d3f66647a5c69ae404996e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shoot_sound: {fileID: 8300000, guid: 7800cb351213675478d1098ee1332494, type: 3}
+  charge_shoot_sound: {fileID: 8300000, guid: e84790fab97e16e40a466f4fd95cc04a, type: 3}
+  damage_sound: {fileID: 8300000, guid: 1d5f2ef0be3ea4a4692fa1a715dfcb82, type: 3}
+  death_sound: {fileID: 8300000, guid: 841ee8bedeedd864f90c2d6416881548, type: 3}
+  game_over: {fileID: 8300000, guid: 9d3f2e631aa672a4a8d18e02cca99507, type: 3}
   moveSpeed: 5
-  bulletPrefab: {fileID: 402728970043100204, guid: 49c2fa15f4f74034c9782fa42e770c70, type: 3}
-  chargeBulletPrefab: {fileID: 6182333211121395224, guid: 8cf38c082a10c874ba717f31c5f0a22b, type: 3}
+  bulletPrefab: {fileID: 0}
+  chargeBulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}
   bulletSpeed: 10
   fireRate: 0.2

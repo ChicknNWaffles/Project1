@@ -133,7 +133,7 @@ public class Player : MonoBehaviour
         
         if (rb != null)
         {
-            SoundFXManager.Instance.PlaySoundClip(shoot_sound, transform, 0.6f);
+            SoundFXManager.Instance.PlaySoundClip(shoot_sound, transform, 0.4f, 1f);
             rb.velocity = firePoint.right * bulletSpeed;
         }
         
@@ -163,7 +163,7 @@ public class Player : MonoBehaviour
         
         if (rb != null)
         {
-            SoundFXManager.Instance.PlaySoundClip(charge_shoot_sound, transform, 0.6f);
+            SoundFXManager.Instance.PlaySoundClip(charge_shoot_sound, transform, 0.6f, 1f);
             rb.velocity = firePoint.right * bulletSpeed;
         }
         
@@ -230,7 +230,7 @@ public class Player : MonoBehaviour
 
     // Damage and healing implementation, will be referenced whenever hit or healed
     public void TakeDamage(int damage) {
-        SoundFXManager.Instance.PlaySoundClip(damage_sound, transform, 1f);
+        SoundFXManager.Instance.PlaySoundClip(damage_sound, transform, 0.6f, 1f);
         healthSystem.LoseHealth(damage);
         ScoreSystem.Instance.MultReset();
         if (healthSystem.GetHealth() <= 0) {
@@ -241,8 +241,8 @@ public class Player : MonoBehaviour
     // KILLS PLAYER
     private void Die() {
         Debug.Log("Player destroyed");
-        SoundFXManager.Instance.PlaySoundClip(death_sound, transform, 1f);
-        SoundFXManager.Instance.PlaySoundClip(game_over, transform, 1f);
+        SoundFXManager.Instance.PlaySoundClip(death_sound, transform, 1f, 1f);
+        SoundFXManager.Instance.PlaySoundClip(game_over, transform, 1f, 1f);
         Destroy(gameObject);
         Game.Instance.GameOver();
     }

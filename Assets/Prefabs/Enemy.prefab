@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: -4133782692145594651}
   - component: {fileID: 4829805650154376821}
   - component: {fileID: -2488687300772079166}
+  - component: {fileID: 4771321452503694856}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -214,5 +215,20 @@ MonoBehaviour:
   moveSpeed: 0
   turnLikelihood: 0
   bulletSpeed: 10
+  origin: {x: 0, y: 0, z: 0}
   enemyMaxHealth: 3
   enemyScoreValue: 1
+--- !u!114 &4771321452503694856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4877148505845150358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a702fda39ed804292c091dae383839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthBar: {fileID: 0}

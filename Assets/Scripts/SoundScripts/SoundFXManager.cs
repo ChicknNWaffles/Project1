@@ -16,11 +16,12 @@ public class SoundFXManager : MonoBehaviour
         }
     }
 
-    public void PlaySoundClip(AudioClip audioClip, Transform transform, float volume)
+    public void PlaySoundClip(AudioClip audioClip, Transform transform, float volume, float pitch)
     {
         AudioSource audioSource = Instantiate(soundFXObject, transform.position, Quaternion.identity);
         audioSource.clip = audioClip;
         audioSource.volume = volume;
+        audioSource.pitch = pitch;
         audioSource.Play();
         float clipLength = audioSource.clip.length;
         Destroy(audioSource.gameObject, clipLength);

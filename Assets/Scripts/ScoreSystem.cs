@@ -17,6 +17,8 @@ public class ScoreSystem : MonoBehaviour
     public Vector3 OriginalMultPosition;
     public float OriginalMultSize;
 
+    // sound effects
+    [SerializeField] private AudioClip multiplierSound;
     void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -41,12 +43,21 @@ public class ScoreSystem : MonoBehaviour
         int newMult = currentMult * 2;
         currentMult = Mathf.Min(newMult, maxMult);
         UpdateMultBar();
+
+        // sound effect on mult increase, increases pitch over time
+        float pitch = Mathf.Clamp(1.0f + (currentMult * 0.015f), 1.0f, 2.0f);
+
+        SoundFXManager.Instance.PlaySoundClip(multiplierSound, transform, 0.9f, pitch);
     }
 
     // Resets the mult, when the player gets hit
     public void MultReset() {
         currentMult = 1;
         UpdateMultBar();
+
+        // reset pitch of sfx
+        SoundFXManager.Instance.PlaySoundClip(multiplierSound, transform, 0.3f, 1.0f);
+
     }
     // Use this to increase the score in other scripts
     public void ScoreIncrease(int score) {

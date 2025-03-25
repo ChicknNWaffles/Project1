@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Score:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e97248adcf9c7a048a8e5af41ea9efd1, type: 2}
+  m_sharedMaterial: {fileID: -154209767157270767, guid: e97248adcf9c7a048a8e5af41ea9efd1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -149,8 +149,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScore: 999999999
   maxMult: 32
+  currentScore: 0
   ScoreText: {fileID: 1544856166413312831}
   MultText: {fileID: 0}
   fontSizeMultiplier: 1.5
   OriginalMultPosition: {x: 0, y: 0, z: 0}
   OriginalMultSize: 0
+  multiplierSound: {fileID: 8300000, guid: e9351bc3b1cdf5048af8fd10a8cb0875, type: 3}
