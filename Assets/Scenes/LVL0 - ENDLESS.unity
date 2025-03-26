@@ -933,17 +933,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1682371628524798981, guid: 8db9bb63ace59f143b7efe21eae36777, type: 3}
       propertyPath: m_text
-      value: We can't reach you out there. I'm afraid the only thing you can do is
-        pray. Good luck.
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1682371628524798981, guid: 8db9bb63ace59f143b7efe21eae36777, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: e97248adcf9c7a048a8e5af41ea9efd1, type: 2}
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 1682371628524798981, guid: 8db9bb63ace59f143b7efe21eae36777, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -154209767157270767, guid: e97248adcf9c7a048a8e5af41ea9efd1, type: 2}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 1682371628524798981, guid: 8db9bb63ace59f143b7efe21eae36777, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0

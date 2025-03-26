@@ -150,6 +150,7 @@ public class Game : MonoBehaviour {
     void clearObjectiveText()
     {
         objectiveStatementObj.text = "";
+        Destroy(objectiveStatementObj.transform.GetChild(0).gameObject);
     }
 
 
